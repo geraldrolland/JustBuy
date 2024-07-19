@@ -51,8 +51,8 @@ const BestSellingProduct = () => {
   return (
     <>
       <Title title={"This Month"} />
-      <div className='w-[100%] h-[40px]  border-1px mt-4 flex place-content-between items-center'>
-        <div className='md:text-3xl tracking-wide font-bold lg:ml-8'>Best Selling Products</div>
+      <div className='w-[100%] h-[40px]   mt-2 flex place-content-between items-center'>
+        <div className='md:text-3xl tracking-wide font-bold lg:ml-8 text-xl'>Best Selling Products</div>
         { renderView ? 
             <button onClick={() => {
                 setShow(!show)
@@ -66,7 +66,7 @@ const BestSellingProduct = () => {
       animate={show ? "hideProduct" : "viewProduct"} 
       ref={scrollRef} className='w-[100%] flex flex-wrap place-content-start md:space-x-9 place-items-center mt-8'>
         { 
-           /* data?.map(product => <Product key={product.id} prod={product} />)*/
+            data?.map(product => <Product key={product.id} prod={product} />)
         }
       </motion.div>
     </>

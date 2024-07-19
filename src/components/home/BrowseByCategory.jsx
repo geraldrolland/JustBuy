@@ -11,6 +11,7 @@ import { BsPhone } from "react-icons/bs";
 import { IoWatchOutline } from "react-icons/io5";
 import { PiGameControllerThin } from "react-icons/pi";
 import { PiHandbagThin } from "react-icons/pi";
+import { LiaShoePrintsSolid } from "react-icons/lia";
 import "../../styles/style.css"
 import { useRef, useCallback } from "react";
 import React from "react";
@@ -81,7 +82,7 @@ const BrowseByCategory = () => {
           </button>
         </div>
     </div>
-    <div ref={scrollRef} onScroll={() => handleScroll(event)} className="w-[100%] border-1px inline-flex scroll-smooth h-[130px]  md:h-[175px] tab-container overflow-x-scroll  ">
+    <div ref={scrollRef} onScroll={() => handleScroll(event)} className="w-[100%] inline-flex scroll-smooth h-[130px]  md:h-[175px] tab-container overflow-x-scroll  ">
       <div className=" h-[full] inline-flex lg:place-content-evenl place-content-start place-items-center space-x-2 lg:space-x-6">
         <div className="md:w-[130px] w-[100px] h-[100px] cursor-pointer shadow-sm rounded-md border-2px  hover:border-red-400 transition-all duration-150  md:h-[130px]  lg:first:ml-8 flex place-content-evenly place-items-center  flex-col">
           <BsPhone className="text-[40px]" />
@@ -89,47 +90,47 @@ const BrowseByCategory = () => {
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 transition-all duration-150 h-[100px] md:h-[130px] cursor-pointer lg:first:ml-8 flex justify-evenly items-center  flex-col">
           <RiComputerLine className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">Computers</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 transition-all duration-150 h-[100px] md:h-[130px]  first:ml-8 cursor-pointer flex justify-evenly items-center  flex-col">
           <IoWatchOutline className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">SmartWatch</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 transition-all duration-150  md:h-[130px] h-[100px]  first:ml-8 cursor-pointer flex justify-evenly items-center  flex-col">
           <CiCamera className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">Camera</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 transition-all duration-150  md:h-[130px] h-[100px] first:ml-8 flex cursor-pointer justify-evenly items-center  flex-col">
           <CiHeadphones className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">HeadPhones</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 cursor-pointer transition-all duration-150 h-[100px] md:h-[130px]  first:ml-8 flex justify-evenly items-center  flex-col">
           <PiGameControllerThin className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">Gaming</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 cursor-pointer transition-all duration-150 h-[100px] md:h-[130px]  first:ml-8 flex justify-evenly items-center  flex-col">
           <PiHandbagThin className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">Hand Bag</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 cursor-pointer transition-all duration-150 h-[100px] md:h-[130px]  first:ml-8 flex justify-evenly items-center  flex-col">
           <CiSpeaker className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">Speakers</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 cursor-pointer transition-all duration-150 h-[100px]  md:h-[130px]  first:ml-8 flex justify-evenly items-center  flex-col">
           <PiTelevisionSimpleThin className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">Television</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 cursor-pointer transition-all duration-150 h-[100px]  md:h-[130px]  first:ml-8 flex justify-evenly items-center  flex-col">
           <PiArmchairLight className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">Furniture</div>
         </div>
         <div className="w-[100px] md:w-[130px] shadow-sm rounded-md border-2px  hover:border-red-400 cursor-pointer transition-all duration-150 h-[100px] md:h-[130px]  first:ml-8 flex justify-evenly items-center  flex-col">
-          <IoPhonePortraitOutline className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <LiaShoePrintsSolid  className="text-[40px]" />
+          <div className="text-md">Shoes</div>
         </div>
         <div className="md:w-[130px] w-[100px] shadow-sm rounded-md border-2px  hover:border-red-400 cursor-pointer transition-all duration-150 h-[100px] md:h-[130px]  first:ml-8 flex justify-evenly items-center  flex-col">
           <PiTShirt className="text-[40px]" />
-          <div className="text-md">Phones</div>
+          <div className="text-md">Clothes</div>
         </div>
       </div>
     </div>

@@ -109,8 +109,8 @@ const ExploreOurProduct = () => {
   return (
     <>
       <Title title={"Our Product"} />
-      <div className='w-[100%] h-[40px] mt-4 border-1px inline-flex place-content-between place-items-center'>
-        <div className='md:text-3xl font-bold lg:ml-8 tracking-wide'>Explore Our Products</div>
+      <div className='w-[100%] h-[40px] mt-2  inline-flex place-content-between place-items-center'>
+        <div className='md:text-3xl font-bold lg:ml-8 tracking-wide text-xl'>Explore Our Products</div>
         <div className="w-[100px] hidden lg:flex h-full justify-evenly items-center mr-8">
           <button ref={ButtonleftRef} onClick={() => {moveLeft()}}  className="w-[30px] bg-gray-200 h-[30px] rounded-full flex justify-center items-center">
           <svg className="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -130,7 +130,7 @@ const ExploreOurProduct = () => {
        ref={scrollRef} onScroll={() => handleScroll(event)} className='w-[100%] overflow-x-scroll scroll-smooth tab-container'>
         <div className='lg:w-[150%] w-[100%] flex flex-wrap place-content-start md:space-x-5 place-items-center'>
             {
-               /* data?.map(product => <Product key={product.id} prod={product} />)*/
+                data?.map(product => <Product key={product.id} prod={product} />)
             }
         </div>
       </motion.div>

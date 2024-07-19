@@ -118,7 +118,7 @@ const FlashSale = () => {
     <>
     <Title title="Today's"/>
         <div className="md:w-[95%] mt-2 w-[100%]  h-[40px] inline-flex justify-between items-center  lg:ml-8">
-          <div className="lg:w-[35%] md:w-[45%] h-full w-[100%] border-1px flex justify-between">
+          <div className="lg:w-[35%] md:w-[45%] h-full w-[100%]  flex justify-between">
             <div className="lg:text-3xl md:text-xl  tracking-wide font-semibold text-black text-[22px] self-end">Flash Sales</div>
             <Clock/>
         </div>
@@ -142,7 +142,7 @@ const FlashSale = () => {
           <div ref={scrollContainerRef} className="lg:w-[150%]   md:w-[100%] w-[100%] md:space-y-14 md:place-content-evenly place-content-between flex flex-wrap border-1px  lg:space-y-10
           place-items-center lg:place-content-start ">
            {
-              /* data?.map(product => (<Product buttonLeft={ButtonleftRef} buttonRight={ButtonRightRef} scroll={scrollRef} showView={renderView} key={product.id}  prod={product}/>))*/
+               data?.map(product => (<Product buttonLeft={ButtonleftRef} buttonRight={ButtonRightRef} scroll={scrollRef} showView={renderView} key={product.id}  prod={product}/>))
            }
           </div>
         </motion.div>
