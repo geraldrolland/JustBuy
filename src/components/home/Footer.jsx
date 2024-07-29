@@ -86,7 +86,7 @@ const Footer = () => {
             </div>
         </div>
     </div>
-    <div className='w-[100%] lg:h-[70px] md:h-[40px] h-[30px]  bg-black flex justify-center items-center border-t-1px border-gray-600 text-gray-700 md:tracking-widest'><span className='text-[25px] inline-block mr-2'>&#169;</span> Copyright Rimel 2022. All right reserved</div>
+    <div className='w-[100%] lg:h-[70px] md:h-[40px] h-[50px]  bg-black flex justify-center items-center border-t-1px border-gray-600 text-gray-700 md:tracking-widest'><span className='text-[25px] inline-block mr-2'>&#169;</span> Copyright Rimel 2022. All right reserved</div>
     </>
   )
 }

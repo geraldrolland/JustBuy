@@ -79,7 +79,8 @@ const Home = () => {
             enteries.forEach(entry => {
                 if (entry.isIntersecting) {
                     setIsAnimate(true)
-                    observer.unobserve(entry)
+                    console.log("is intersecting")
+                   // observer.unobserve(entry)
                 } else {
                     setIsAnimate(false)
                 }

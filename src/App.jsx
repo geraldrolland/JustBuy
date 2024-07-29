@@ -9,8 +9,8 @@ import PageNotFound from './components/PageNotFound'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import { useEffect } from 'react'
 const queryClient = new QueryClient()
-function App() {
 
+function App() {
 
   useEffect(() => {
     document.body.style.overflowX = "hidden"
@@ -23,11 +23,11 @@ function App() {
     <div className='bg-white'>
     <Routes>
       <Route index element={<Home/>}/>
-      <Route to={"/"} element={<Home/>}/>
-      <Route to={"contact"} element={<Contact/>}/>
-      <Route to={"about"} element={<About/>}/>
-      <Route to={"sign-up"} element={<SignUp/>}/>
-      <Route to={"*"} element={<PageNotFound/>}/>
+      <Route path={"/"} element={<Home/>}/>
+      <Route path={"contact"} element={<Contact/>}/>
+      <Route path={"about"} element={<About/>}/>
+      <Route path={"sign-up"} element={<SignUp/>}/>
+      <Route path={"*"} element={<PageNotFound/>}/>
       <Route/>
     </Routes>
     </div>

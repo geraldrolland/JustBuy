@@ -9,8 +9,18 @@ import axios from "axios"
 import {useQuery} from "@tanstack/react-query"
 import { produce } from "immer"
 import { render } from "react-dom"
+import FlashSaleLoader from "../loaders/FlashSaleLoader"
+import React from "react"
+const fetchFlashSale = async () => {
+  try {
+    const response = await axios.get("https://fakestoreapi.com/products?limit=18")
+    return response.data
+  }
+  catch(error) {
+    return error
+  }
 
-
+}
 
 const FlashSale = () => {
   const scrollRef = useRef(null)
@@ -21,10 +31,16 @@ const FlashSale = () => {
   const [value, setValue] = useState("")
   const [click, setClick] = useState(false)
   const [xPosition, setXPosition] = useState(0)
-  const [data, setData] = useState({})
+
   const [show, setShow] = useState(null)
   const [renderView, setRenderViewState] = useState(false)
   const scrollContainerRef = useRef(null)
+
+  const {isPending, isFetching, isError, data} = useQuery({
+    queryKey: ["flashsales"],
+    queryFn: fetchFlashSale
+  })
+
 
   const displayAllProduct = {
     hideProduct: {
@@ -88,7 +104,7 @@ const FlashSale = () => {
   }
 
   useEffect(() => {
-    if (scrollRef.current.scrollHeight > 400) {
+    if (scrollRef.current?.scrollHeight > 400) {
       setRenderViewState(true)
       setShow(true)
       console.log("error1")
@@ -101,21 +117,13 @@ const FlashSale = () => {
     }
   }, [data])
 
-  useEffect(() => {
-    axios.get("https://fakestoreapi.com/products?limit=18")
-    .then((response) => {
-      setData(response.data)
-      console.log(data)
-
-    })
-    .catch((error) => {
-
-    })
-  }, [])
 
 
-    return  (
+
+    return  ( 
+      isFetching && isPending ? <FlashSaleLoader/> :
     <>
+    
     <Title title="Today's"/>
         <div className="md:w-[95%] mt-2 w-[100%]  h-[40px] inline-flex justify-between items-center  lg:ml-8">
           <div className="lg:w-[35%] md:w-[45%] h-full w-[100%]  flex justify-between">
@@ -142,13 +150,14 @@ const FlashSale = () => {
           <div ref={scrollContainerRef} className="lg:w-[150%]   md:w-[100%] w-[100%] md:space-y-14 md:place-content-evenly place-content-between flex flex-wrap border-1px  lg:space-y-10
           place-items-center lg:place-content-start ">
            {
-               data?.map(product => (<Product buttonLeft={ButtonleftRef} buttonRight={ButtonRightRef} scroll={scrollRef} showView={renderView} key={product.id}  prod={product}/>))
+               /*data?.map(product => (<Product buttonLeft={ButtonleftRef} buttonRight={ButtonRightRef} scroll={scrollRef} showView={renderView} key={product.id}  prod={product}/>))*/
            }
           </div>
         </motion.div>
         {renderView ? <button
         onClick={() => setShow(!show)}
         className="w-[150px] h-[40px] text-white block  bg-red-500 mx-auto mt-10">{show ? "View All Products" : "Hide All Products"}</button> : null}
+
     </>
   )
 }

@@ -5,6 +5,17 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import Product from '../product/Product'
 import { motion } from 'framer-motion'
+import { useQuery } from '@tanstack/react-query'
+
+const fetchExploreOurProduct = async () => {
+  try {
+    const response = await axios.get("https://fakestoreapi.com/products")
+    return response.data
+  }
+  catch(error) {
+    return error
+  }
+}
 
 const ExploreOurProduct = () => {
 
@@ -12,10 +23,12 @@ const ExploreOurProduct = () => {
     const ButtonleftRef = useRef(null)
     const ButtonRightRef = useRef(null)
     const scrollRef = useRef(null)
-    const [data, setData] = useState({})
     const [show, setShow] = useState(null)
     const [renderView, setRenderViewState] = useState(false)
-
+    const {isPending, isError, isFetching, error, data} = useQuery({
+      queryKey: ["exploreourproduct"],
+      queryFn: fetchExploreOurProduct
+    })
     const displayAllProduct = {
         hideProduct: {
           height: "400px",
@@ -95,17 +108,7 @@ const ExploreOurProduct = () => {
         }
       }, [data])
     
-    useEffect(() => {
-        axios.get("https://fakestoreapi.com/products")
-        .then((response) => {
-          setData(response.data)
-          console.log(data)
-    
-        })
-        .catch((error) => {
-    
-        })
-      }, [])
+
   return (
     <>
       <Title title={"Our Product"} />
@@ -130,7 +133,7 @@ const ExploreOurProduct = () => {
        ref={scrollRef} onScroll={() => handleScroll(event)} className='w-[100%] overflow-x-scroll scroll-smooth tab-container'>
         <div className='lg:w-[150%] w-[100%] flex flex-wrap place-content-start md:space-x-5 place-items-center'>
             {
-                data?.map(product => <Product key={product.id} prod={product} />)
+                /*data?.map(product => <Product key={product.id} prod={product} />)*/
             }
         </div>
       </motion.div>

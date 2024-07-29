@@ -5,13 +5,28 @@ import { useEffect } from 'react'
 import { useRef } from 'react'
 import axios from 'axios'
 import { motion } from 'framer-motion'
+import { useQuery } from '@tanstack/react-query'
 
+const fetchBestSellingProduct = async () => {
+  console.log("is fetching")
+  try {
+    const response = await axios.get("https://fakestoreapi.com/products?limit=18")
+    return response.data
+  }
+  catch(error) {
+    return error
+  }
+
+}
 const BestSellingProduct = () => {
     const scrollRef = useRef(null)
-    const [data, setData] = useState({})
     const [show, setShow] = useState(null)
     const [renderView, setRenderViewState] = useState(false)
 
+    const {isPending, isFetching, data, isError} = useQuery({
+      queryKey: ["bestsellingproduct"],
+      queryFn: fetchBestSellingProduct
+    })
     const displayAllProduct = {
         hideProduct: {
           height: "400px",
@@ -38,16 +53,6 @@ const BestSellingProduct = () => {
         }
       }, [data])
 
-    useEffect(() => {
-        axios.get("https://fakestoreapi.com/products?limit=18")
-        .then((response) => {
-          setData(response.data)
-          console.log(data)
-    
-        })
-        .catch((error) => {    
-        })
-      }, [])
   return (
     <>
       <Title title={"This Month"} />
@@ -65,8 +70,8 @@ const BestSellingProduct = () => {
       variants={displayAllProduct}
       animate={show ? "hideProduct" : "viewProduct"} 
       ref={scrollRef} className='w-[100%] flex flex-wrap place-content-start md:space-x-9 place-items-center mt-8'>
-        { 
-            data?.map(product => <Product key={product.id} prod={product} />)
+        {/* isFetching && isPending ? "loading..." :
+            data?.map(product => <Product key={product.id} prod={product} />)*/
         }
       </motion.div>
     </>
