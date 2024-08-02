@@ -9,6 +9,18 @@ import { userStatus } from "../../App";
 import { motion } from "framer-motion";
 
 const SignUp = () => {
+  const [createUserInput, setCreateUserInput] = useState({
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "password": "",
+  })
+
+  const [logInUserInput, setlogInUserInput] = useState({
+    "email": "",
+    "password": "",
+  })
+
   const [isSlideToLoggingPage, setIsSlideToLoggingPage] = useState(false)
   const forgotPasswordPageRef = useRef()
   const translateLoggingPage = {
@@ -37,6 +49,13 @@ const SignUp = () => {
     isShowLoggingPage,
   } = useContext(userStatus)
 
+  const handleCreateUser = () => {
+    createUser("http://127.0.0.1:8000/users/create_user", createUserInput)
+  }
+
+  const handleLoginUser = () => {
+    logInUser("http://127.0.0.1:8000/users/login_user", logInUserInput)
+  }
 
   const showForgotPasswordPage = () => {
     if (forgotPasswordPageRef.current) {
@@ -62,7 +81,6 @@ const SignUp = () => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.current.focus
           console.log("it is observing")
         }
       })
@@ -85,12 +103,12 @@ const SignUp = () => {
       <div className="md:w-[50%] lg:w-[50%]  w-[100%] flex relative justify-center items-center h-[100%]">
         <div className="md:w-[100%]  lg:w-[55%] w-[100%] h-[100%] relative lg:h-[90%] border-1px ">
 
-          <div ref={forgotPasswordPageRef} className="absolute w-[100%] hidden h-[100%] z-10 overflow-x-scroll overflow-y-hidden">
+          <div ref={forgotPasswordPageRef} className="absolute bg-white w-[100%] hidden h-[100%] z-10 overflow-x-scroll overflow-y-hidden">
             <div className="w-[300%] h-full inline-flex justify-start items-center">
 
               <div className="w-[33.33%] h-[100%] border-1px">
                 <div className="w-[100%] tracking-wide h-[40px] border-1px flex justify-center items-center relative">
-                  <TfiArrowCircleLeft className="absolute left-1 w-[22px] h-[22px]"/>
+                  <TfiArrowCircleLeft onClick={hideForgotPasswordPage} className="absolute left-1 w-[22px] h-[22px] cursor-pointer"/>
                   Forgot Password
                 </div>
                 <h1 className="text-center mt-5 capitalize tracking-wide md:mt-10">enter email address</h1>
@@ -163,16 +181,16 @@ const SignUp = () => {
           }}
            className="inline-flex justify-start items-center w-[200%] h-[100%]">
 
-            <div className="w-[50%] elem h-[100%]">
+            <div className="w-[50%] h-[100%]">
           <h1 className="text-[30px] tracking-widest">
             Create an account
           </h1>
           <h1 className="mt-4 text-gray-800">Enter your details below</h1>
-          <input className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-4 md:mt-6 lg:mt-8 pl-4 tracking-wide" type="text" placeholder="First Name" />
-          <input className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Last Name" />
-          <input className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Last Name" />
-          <input className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Password" />
-          <button className="w-[100%] h-[50px] lg:h-[45px]  mt-5 text-gray-200 tracking-wide rounded-full bg-red-600 ">
+          <input onChange={(e) => setCreateUserInput({...createUserInput, first_name: e.target.value}) } value={createUserInput.first_name} className="w-[100%] elem lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-4 md:mt-6 lg:mt-8 pl-4 tracking-wide" type="text" placeholder="First Name" />
+          <input onChange={(e) => setCreateUserInput({...createUserInput, last_name: e.target.value})} value={createUserInput.last_name} className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Last Name" />
+          <input onChange={(e) => setCreateUserInput({...createUserInput, email: e.target.value})} value={createUserInput.email} className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Last Name" />
+          <input onChange={(e) => setCreateUserInput({...createUserInput, password: e.target.value})} value={createUserInput.password} className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Password" />
+          <button onClick={handleCreateUser} className="w-[100%] h-[50px] lg:h-[45px]  mt-5 text-gray-200 tracking-wide rounded-full bg-red-600 ">
             Create Account
           </button>
           <div className="w-[100%] h-[45px] border-gray-500 shadow-sm rounded-full border-1px  mt-3 flex justify-center items-center">
@@ -188,16 +206,16 @@ const SignUp = () => {
             </span></div>
           </div>
 
-          <div className="w-[50%] elem h-[100%]">
+          <div className="w-[50%]  h-[100%]">
           <h1 className="text-[30px] tracking-widest">
             Log in to justBuy
           </h1>
           <h1 className="mt-4 text-gray-800">Enter your details below</h1>
-          <input className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-4 md:mt-6 lg:mt-8 pl-4 tracking-wide" type="text" placeholder="Email or Phone Number" />
-          <input className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-6 pl-4 tracking-wide" type="text" placeholder="Password" />
+          <input onChange={(e) => setlogInUserInput({...logInUserInput, email: e.target.value})} value={logInUserInput.email} className="w-[100%] elem lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-4 md:mt-6 lg:mt-8 pl-4 tracking-wide" type="text" placeholder="Email or Phone Number" />
+          <input onChange={(e) => setlogInUserInput({...logInUserInput, password: e.target.value})} value={logInUserInput.password} className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-6 pl-4 tracking-wide" type="text" placeholder="Password" />
           <div className="w-[100%] flex justify-between items-center lg:h-[45px] h-[50px] mt-8">
-            <button className="w-[30%] bg-red-600 h-[100%]  rounded-full text-gray-200">Log in</button>
-            <button className="text-red-500 capitalize tracking-wider">forgot password?</button>
+            <button onClick={handleLoginUser} className="w-[30%] bg-red-600 h-[100%]  rounded-full text-gray-200">Log in</button>
+            <button onClick={showForgotPasswordPage} className="text-red-500 capitalize tracking-wider">forgot password?</button>
           </div>
           <div className="md:w-[80%] h-[30px] mx-auto flex justify-center space-x-5 items-center mt-4 md:mt-6"><span className="tracking-wider text-gray-800 ">Dont't have an account?</span><span className=" group inline-block relative w-[65px] h-[30px]   overflow-y-hidden">
             <span onClick={() => changeStatus()} className="block text-gray-800 tracking-wide absolute cursor-pointer z-10 group-hover:text-gray-200 transition-all duration-200 left-1 top-[2px]">Sign up</span>
