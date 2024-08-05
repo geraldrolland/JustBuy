@@ -7,11 +7,14 @@ import Contact from './components/contact/Contact'
 import About from './components/about/About'
 import PageNotFound from './components/PageNotFound'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
-import { createContext, useNavigation, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import UseLogIn from './customhook/UseLogIn'
 import UseSignUp from './customhook/UseSignUp'
 import UseLogOut from './customhook/UseLogOut'
-
+import { WishLists } from './components/home/WishLists'
+import { MyAccount } from './components/home/MyAccount'
+import { MyProfile } from './components/home/MyProfile'
+import { MyAddressBook } from './components/home/MyAddressBook'
 const queryClient = new QueryClient()
 export const userStatus = createContext()
 
@@ -19,7 +22,7 @@ function App() {
   const logIn = UseLogIn()
   const signUp = UseSignUp()
   const logOut = UseLogOut()
-  const navigateToHome = useNavigation()
+  //const navigateToHome = useNavigation()
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
   const [isEmailAlreadyExists, setIsEmailAlreadyExists] = useState(false)
   const [isWrongEmailOrPassword, setWrongEmailorPassword] = useState(false)
@@ -48,7 +51,7 @@ function App() {
     const {email, statusCode} = await logIn(url, data)
     if (statusCode === 200) {
       setIsDisable(false)
-      navigateToHome("/")
+      //navigateToHome("/")
     }
     if (statusCode === 401 || statusCode === 404) {
       setWrongEmailorPassword(true)
@@ -95,6 +98,11 @@ function App() {
     <Routes>
       <Route index element={<Home/>}/>
       <Route path={"/"} element={<Home/>}/>
+      <Route path={"my-account"} element={<MyAccount/>}>
+      <Route path={"my-profile"} element={<MyProfile/>} />
+      <Route path={"my-address-book"} element={<MyAddressBook/>} />
+      </Route>
+      <Route path={"wishlist"} element={<WishLists/>}/>
       <Route path={"contact"} element={<Contact/>}/>
       <Route path={"about"} element={<About/>}/>
       <Route path={"sign-up"} element={<SignUp/>}/>

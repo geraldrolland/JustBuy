@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 
 
-const Product = ({prod, scroll, showView, buttonLeft, buttonRight}) => {
+const Product = ({prod}) => {
   const [perc, setperc] = useState(0)
   const rate1 = useRef(null)
   const rate2 = useRef(null)
@@ -26,7 +26,7 @@ const Product = ({prod, scroll, showView, buttonLeft, buttonRight}) => {
 
 
   return (
-    <div className='md:w-[230px] cursor-pointer lg:last:self-start shadow-md rounded-md product md:shadow-sm product  md:mr-[20px] mb-14  mr-2  lg:first:mt-10 md:first:mt-14  md:h-[350px] w-[170px] h-[300px]  md:mb-0  md:mt-[25px]'>
+    <div className='md:w-[230px] cursor-pointer  shadow-md rounded-md product md:shadow-sm product  md:mr-[20px]   mr-2 md:h-[350px] w-[170px] h-[300px]  md:mb-[70px] mb-[40px]'>
       <div className='w-full group  h-[75%] overflow-y-hidden  relative flex justify-center items-start'>
         <button type="button" className="w-[100%] transform lg:translate-y-20 transition-all duration-200 lg:group-hover:translate-y-0  h-[25px] absolute  md:h-[40px] bg-black bottom-0 text-sm  text-white">
           Add To Cart

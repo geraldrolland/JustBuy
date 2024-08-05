@@ -7,7 +7,7 @@ import { FaApple } from "react-icons/fa";
 import { useContext, useEffect, useRef, useState } from "react";
 import { userStatus } from "../../App";
 import { motion } from "framer-motion";
-
+import shopCart from "../../assets/shopCart.png"
 const SignUp = () => {
   const [createUserInput, setCreateUserInput] = useState({
     "first_name": "",
@@ -99,9 +99,9 @@ const SignUp = () => {
   return (
     <>
     <div className="w-[100%] md:mt-4 mt-4 inline-flex justify-between h-[500px] items-center mb-2 md:mb-8 lg:mb-24 lg:h-[650px]  md:h-[550px]">
-      <img className="w-[50%] md:block hidden h-[100%] border-1px"/>
+      <img className="w-[50%] md:block hidden h-[100%]" src={shopCart}/>
       <div className="md:w-[50%] lg:w-[50%]  w-[100%] flex relative justify-center items-center h-[100%]">
-        <div className="md:w-[100%]  lg:w-[55%] w-[100%] h-[100%] relative lg:h-[90%] border-1px ">
+        <div className="md:w-[100%]  lg:w-[55%] w-[100%] h-[100%] relative lg:h-[90%]  ">
 
           <div ref={forgotPasswordPageRef} className="absolute bg-white w-[100%] hidden h-[100%] z-10 overflow-x-scroll overflow-y-hidden">
             <div className="w-[300%] h-full inline-flex justify-start items-center">

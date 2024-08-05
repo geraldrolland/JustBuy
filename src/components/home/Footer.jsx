@@ -13,7 +13,7 @@ const Footer = () => {
     <>
     <div className='w-[100%] md:h-[400px]  lg:h-[350px] h-[1200px]  bg-black md:flex'>
         <div className='md:w-[23%] w-[100%] h-[15%] border-b-1px pb-4 border-gray-600 md:pb-0 md:border-0 '>
-            <div className='capitalize lg:ml-14 text-white text-2xl   mx-auto tracking-wider pt-4 mt-14'>exclusive</div>
+            <div className='capitalize lg:ml-14 text-white text-2xl   mx-auto tracking-wider pt-4 mt-10'>exclusive</div>
             <div className='capitalize lg:ml-14 text-gray-300 md:text-lg mx-auto tracking-wider mt-3'>subscribe</div>
             <div className='  text-md lg:ml-14 tracking-wide mt-4 text-gray-300 md:tracking-tight'>Get 10% off your first order</div>
             <div className='lg:w-[70%] md:w-[90%] h-[40px] border-1px lg:ml-14 mt-2 rounded-[4px] relative w-[75%]'>

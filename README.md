@@ -9,4 +9,8 @@ Currently, two official plugins are available:
 
 
 
-This project
+justBuy Ui
+1) developed the home and made it interactive and user experience friendly
+2) developed the login and signup page added login and signup fucntionality
+3) developed the wishlist page added functionality to delete wishlist product and to cart
+4) developed the user account page added fuctionality to enable update od user profile

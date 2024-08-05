@@ -35,6 +35,7 @@ const FlashSale = () => {
   const [show, setShow] = useState(null)
   const [renderView, setRenderViewState] = useState(false)
   const scrollContainerRef = useRef(null)
+  const [maxHeight, setMaxHeight] = useState(420)
 
   const {isPending, isFetching, isError, data} = useQuery({
     queryKey: ["flashsales"],
@@ -44,7 +45,7 @@ const FlashSale = () => {
 
   const displayAllProduct = {
     hideProduct: {
-      height: "420px",
+      height: maxHeight + "px",
       overflowY: "hidden"
     },
     viewProduct: {
@@ -83,6 +84,7 @@ const FlashSale = () => {
   }
 
   const moveLeft = () => {
+    
     if (scrollRef.current.scrollLeft > 100) {
     scrollRef.current.scrollLeft -= 325
     ButtonRightRef.current.style.visibility = "visible"
@@ -104,6 +106,11 @@ const FlashSale = () => {
   }
 
   useEffect(() => {
+     if (matchMedia('(max-width: 768px)').matches === true) {
+      console.log("it is true")
+      setMaxHeight(300)
+     }
+     console.log("it is false")
     if (scrollRef.current?.scrollHeight > 400) {
       setRenderViewState(true)
       setShow(true)
@@ -147,10 +154,10 @@ const FlashSale = () => {
         variants={displayAllProduct}
         animate={show ? "hideProduct" : "viewProduct"} 
          ref={scrollRef}  onScroll={() => handleScroll(event)}  className="lg:w-[100%]   w-[100%] mt-4 tab-container overflow-x-scroll overflow-y-hidden scroll-smooth">
-          <div ref={scrollContainerRef} className="lg:w-[150%]   md:w-[100%] w-[100%] md:space-y-14 md:place-content-evenly place-content-between flex flex-wrap border-1px  lg:space-y-10
+          <div ref={scrollContainerRef} className="lg:w-[150%]   md:w-[100%] w-[100%]  md:place-content-evenly place-content-between flex flex-wrap border-1px  
           place-items-center lg:place-content-start ">
            {
-               /*data?.map(product => (<Product buttonLeft={ButtonleftRef} buttonRight={ButtonRightRef} scroll={scrollRef} showView={renderView} key={product.id}  prod={product}/>))*/
+               data?.map(product => (<Product key={product.id}  prod={product}/>))
            }
           </div>
         </motion.div>
