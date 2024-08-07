@@ -15,6 +15,7 @@ import { WishLists } from './components/home/WishLists'
 import { MyAccount } from './components/home/MyAccount'
 import { MyProfile } from './components/home/MyProfile'
 import { MyAddressBook } from './components/home/MyAddressBook'
+import { Cart } from './components/home/Cart'
 const queryClient = new QueryClient()
 export const userStatus = createContext()
 
@@ -106,6 +107,7 @@ function App() {
       <Route path={"contact"} element={<Contact/>}/>
       <Route path={"about"} element={<About/>}/>
       <Route path={"sign-up"} element={<SignUp/>}/>
+      <Route path={"cart"} element={<Cart/>} />
       <Route path={"*"} element={<PageNotFound/>}/>
       <Route/>
     </Routes>

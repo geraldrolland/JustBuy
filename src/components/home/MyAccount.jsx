@@ -43,7 +43,7 @@ export const MyAccount = () => {
             </div>
             <h1 className='text-gray-950 text-[20px] tracking-wide capitalize'>my wishlist</h1>
         </div>
-        <div className='md:w-[70%] w-[100%] h-[100%]  md:shadow-lg rounded-lg'>
+        <div className='md:w-[70%] w-[100%] h-[100%]  lg:shadow-lg rounded-lg'>
             <Outlet/>
         </div>
 

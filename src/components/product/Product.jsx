@@ -8,6 +8,7 @@ const Product = ({prod}) => {
   const rate3 = useRef(null)
   const rate4 = useRef(null)
   const rate5 = useRef(null)
+
   useEffect(() => {
     const rate = parseInt(prod.rating.rate)
     const rateArray = [rate1, rate2, rate3, rate4, rate5]
@@ -24,11 +25,33 @@ const Product = ({prod}) => {
     }
   }
 
+  const createOrder = (id, title, price, image) => {
+    const cart = {
+      id,
+      title,
+      price,
+      image,
+      quantity : 1
+    }
+
+    try {
+      const cartList = JSON.parse(localStorage.getItem("cart"))
+      cartList.push(cart)
+      localStorage.setItem("cart", JSON.stringify(cartList))
+    }
+
+    catch(error) {
+      const cartList = []
+      cartList.push(cart)
+      localStorage.setItem("cart", JSON.stringify(cartList))
+    }
+  }
+
 
   return (
     <div className='md:w-[230px] cursor-pointer  shadow-md rounded-md product md:shadow-sm product  md:mr-[20px]   mr-2 md:h-[350px] w-[170px] h-[300px]  md:mb-[70px] mb-[40px]'>
       <div className='w-full group  h-[75%] overflow-y-hidden  relative flex justify-center items-start'>
-        <button type="button" className="w-[100%] transform lg:translate-y-20 transition-all duration-200 lg:group-hover:translate-y-0  h-[25px] absolute  md:h-[40px] bg-black bottom-0 text-sm  text-white">
+        <button onClick={() => createOrder(prod.id, prod.title, prod.price, prod.image)} type="button" className="w-[100%] transform lg:translate-y-20 transition-all duration-200 lg:group-hover:translate-y-0  h-[25px] absolute  md:h-[40px] bg-black bottom-0 text-sm  text-white">
           Add To Cart
         </button>
         <div className=' w-[25%] h-[12%]  absolute top-2 left-2 rounded-md flex justify-center items-center bg-red-600 text-white'>-{perc}%</div>

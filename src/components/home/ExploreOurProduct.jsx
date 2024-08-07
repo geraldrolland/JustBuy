@@ -133,7 +133,7 @@ const ExploreOurProduct = () => {
        ref={scrollRef} onScroll={() => handleScroll(event)} className='w-[100%] overflow-x-scroll scroll-smooth tab-container'>
         <div className='lg:w-[150%] w-[100%] flex flex-wrap place-content-start md:space-x-5 place-items-center'>
             {
-                /*data?.map(product => <Product key={product.id} prod={product} />)*/
+                data?.map(product => <Product key={product.id} prod={product} />)
             }
         </div>
       </motion.div>
