@@ -154,7 +154,7 @@ const FlashSale = () => {
         variants={displayAllProduct}
         animate={show ? "hideProduct" : "viewProduct"} 
          ref={scrollRef}  onScroll={() => handleScroll(event)}  className="lg:w-[100%]   w-[100%] mt-4 tab-container overflow-x-scroll overflow-y-hidden scroll-smooth">
-          <div ref={scrollContainerRef} className="lg:w-[150%]   md:w-[100%] w-[100%]  md:place-content-evenly place-content-between flex flex-wrap border-1px  
+          <div ref={scrollContainerRef} className="lg:w-[150%]   md:w-[100%] w-[100%]  md:place-content-evenly place-content-between flex flex-wrap   
           place-items-center lg:place-content-start ">
            {
                data?.map(product => (<Product key={product.id}  prod={product}/>))

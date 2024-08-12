@@ -30,7 +30,10 @@ function App() {
   const [isDisable, setIsDisable] = useState(false)
   const [userEmail, setUserEmail] = useState("")
   const [isShowLoggingPage, setIsShowLoggingPage] = useState(false)
-
+  const [showWishlistAlreadyExist, setShowWishListAlreadyExist] = useState(false)
+  const [showOrderAlreadyExist, setOrderAlreadyExist] = useState(null)
+  const [orderCount, setOrderCount] = useState(0)
+  const [wishlistCount, setWishListCount] = useState(0)
   const createUser = async (url, data) => {
     const statusCode = await signUp(url, data)
     if (statusCode === 201) {
@@ -92,6 +95,14 @@ function App() {
       userEmail,
       setUserEmail,
       setIsShowLoggingPage,
+      setShowWishListAlreadyExist,
+      showOrderAlreadyExist,
+      showWishlistAlreadyExist,
+      setOrderAlreadyExist,
+      orderCount,
+      wishlistCount,
+      setOrderCount,
+      setWishListCount,
     }}>
     <QueryClientProvider client={queryClient}>
     <MyHeader/>

@@ -21,7 +21,7 @@ const Home = () => {
     const [isRotate2, setIsRotate2] = useState(null)
     const [click, setClick] = useState(0)
     const [isAnimate, setIsAnimate] = useState(false)
-
+    const homeRef = useRef(null)
     const animatePulse = {
         noPulse: {
             outlineWidth: "12px",
@@ -96,12 +96,14 @@ const Home = () => {
     useEffect(() => {
         setIsRotate1(false)
         setIsRotate2(false)
+
+
         
     }, [])
    return (
     <>
-    <div className="w-[100%]">
-    <div className="w-full h-[300px] md:h-[450px]   flex">
+    <div ref={homeRef} className="w-[100%]">
+    <div className="w-full md:mt-[60px] mt-[45px] h-[300px] md:h-[450px]   flex">
         <div className="w-[20%] md:w-[35%] md:block hidden h-[100%] overflow-y-scroll lg:border-r-1px  tab-container">
             <div className="w-full">
             <div onClick={() => setIsRotate1(!isRotate1)} className="w-full h-[40px]  tracking-wide text-lg cursor-pointer flex justify-start pl-8 items-center mt-8 md:text-[16px]">

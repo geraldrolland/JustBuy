@@ -1,13 +1,21 @@
 import { useEffect, useRef, useState } from "react"
-
-
+import { json } from "react-router-dom"
+import { userStatus } from "../../App"
+import { useContext } from "react"
+import useStore from "../../customhook/UseStore"
 const Product = ({prod}) => {
+  const {
+    setOrderAlreadyExist,
+  } = useContext(userStatus)
   const [perc, setperc] = useState(0)
   const rate1 = useRef(null)
   const rate2 = useRef(null)
   const rate3 = useRef(null)
   const rate4 = useRef(null)
   const rate5 = useRef(null)
+  const animateOrderExist = useStore(state => state.func1)
+  const animateWishListExist = useStore(state => state.func2)
+
 
   useEffect(() => {
     const rate = parseInt(prod.rating.rate)
@@ -25,6 +33,40 @@ const Product = ({prod}) => {
     }
   }
 
+  const addToWishList = (id, title, price, image) => {
+    const wish = {
+      id,
+      title,
+      price,
+      image,
+      quantity: 1
+    }
+
+    try {
+      let wishlist = JSON.parse(localStorage.getItem("wishlist"))
+      console.log("try")
+      wishlist.forEach(elem => {
+        if (elem.id === wish.id) {
+          animateWishListExist()
+          return
+        }
+      })
+      wishlist = wishlist.filter(elem => elem.id !== wish.id)
+      wishlist.push(wish)
+      localStorage.setItem("wishlist", JSON.stringify(wishlist))
+
+    }
+    catch (error) {
+      console.log("catched")
+
+          const wishlist =  []
+          wishlist.push(wish)
+          localStorage.setItem("wishlist", JSON.stringify(wishlist))
+          console.log("added")
+    }
+
+  }
+
   const createOrder = (id, title, price, image) => {
     const cart = {
       id,
@@ -35,7 +77,14 @@ const Product = ({prod}) => {
     }
 
     try {
-      const cartList = JSON.parse(localStorage.getItem("cart"))
+      let cartList = JSON.parse(localStorage.getItem("cart"))
+      cartList.forEach(prod => {
+        if (prod.id === cart.id) {
+          animateOrderExist()
+          return
+        }
+      })
+      cartList = cartList.filter(elem => elem.id !== cart.id)
       cartList.push(cart)
       localStorage.setItem("cart", JSON.stringify(cartList))
     }
@@ -56,12 +105,12 @@ const Product = ({prod}) => {
         </button>
         <div className=' w-[25%] h-[12%]  absolute top-2 left-2 rounded-md flex justify-center items-center bg-red-600 text-white'>-{perc}%</div>
         <div className='absolute right-1 top-2 flex flex-col justify-between items-center  w-[30px] md:h-[70px] h-[50px]'>
-          <div className='md:w-full md:h-[30px] w-[20px] h-[20px] flex justify-center items-center bg-gray-100 rounded-full'>
+          <div onClick={() => addToWishList(prod.id, prod.title, prod.price, prod.image)} className='md:w-full md:h-[30px] w-[20px] h-[20px] flex justify-center items-center bg-gray-100 rounded-full'>
         <svg className='w-5' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
         </svg>
         </div>
-        <div className='md:w-full md:h-[30px] w-[20px] h-[20px] bg-gray-100 flex justify-center items-center rounded-full'>
+        <div  className='md:w-full md:h-[30px] w-[20px] h-[20px] bg-gray-100 flex justify-center items-center rounded-full'>
         <svg className='w-5' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
