@@ -8,16 +8,48 @@ import { useContext } from 'react'
 import { OrderExist } from './home/OrderExist'
 import { WishListExist } from './home/WishListExist'
 import { WishLists } from './home/WishLists'
+import { useAnimate } from 'framer-motion'
 
 const MyHeader = () => {
+  const [cartcountRef, animateCart] = useAnimate()
+  const [wishlistcountRef, animateWishlist] = useAnimate()
+
   const {
-    orderCount,
-    wishlistCount,
-    setOrderCount,
-    setWishListCount,
     showOrderAlreadyExist,
     showWishlistAlreadyExist,
   } = useContext(userStatus)
+
+  const [wishlistCount, setWishlistCount] = useState(0)
+  const [cartCount, setCartCount] = useState(0)
+
+  const animateCartIcon = () => {
+    if (localStorage.getItem("cart")) {
+    setCartCount(JSON.parse(localStorage.getItem("cart")).length)
+    animateCart(cartcountRef.current, {
+      translateX: ["-8px", "8px", "-6px", "6px", "-4px", "4px", "-2px", "2px", "0"],
+      transition: {
+        duration: 4,
+        ease: "easeInOut"
+      }
+    })
+  }
+  }
+
+  const animateWishListIcon = () => {
+    if (localStorage.getItem("wishlist")) {
+    setWishlistCount(JSON.parse(localStorage.getItem("wishlist")).length)
+    animateCart(wishlistcountRef.current, {
+      translateY: ["-8px", "0px", "-4px", "0", "-2px", "0"],
+      transition: {
+        duration: 4,
+        ease: "easeInOut"
+      }
+    })
+  }
+  }
+    
+    const updateAnimateCartIcon = useStore(state => state.updateAnimateCartIcon)
+    const updateAimateWishListIcon = useStore(state => state.updateAimateWishListIcon)
 
     const isUserLoggedIn = useStore(state => state.isUserLoggedIn)
     const userEmail = useStore(state => state.userEmail)
@@ -39,6 +71,14 @@ const MyHeader = () => {
             borderBottom: isActive ? "gray solid 2px" : "transparent",
         }
     }
+
+    useEffect(() => {
+      updateAnimateCartIcon(animateCartIcon)
+      updateAimateWishListIcon(animateWishListIcon)
+      setWishlistCount(JSON.parse(localStorage.getItem("wishlist")).length)
+      setCartCount(JSON.parse(localStorage.getItem("cart")).length)
+
+    }, [])
 
   return (
     <>
@@ -72,14 +112,17 @@ const MyHeader = () => {
               <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
              </svg>
             </div>
-            <NavLink to={"wishlist"} className='w-[25px] block relative h-[25px]'>
-            <sup className='w-[13px] flex justify-center items-center text-white text-[10px] absolute h-[13px]  rounded-full bg-red-600 ml-4 mt-1'>1</sup>
+            <NavLink ref={wishlistcountRef} to={"wishlist"} className='w-[25px] block relative h-[25px]'>
+            { wishlistCount && wishlistCount !== 0 ? 
+            <sup className='w-[13px] flex justify-center items-center text-white text-[10px] absolute h-[13px]  rounded-full bg-red-600 ml-4 mt-1'>{wishlistCount}</sup> : null}
             <svg className='w-[25px] fill-stroke text-gray-500' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
            </svg>
            </NavLink>
-           <NavLink to={"cart"} className={'relative w-[25px] h-[25px]'}>
-            <sup className='w-[13px] flex justify-center items-center text-white text-[10px] absolute h-[13px]  rounded-full bg-red-600 ml-4 mt-1'>1</sup>
+           <NavLink ref={cartcountRef} to={"cart"} className={'relative w-[25px] h-[25px]'}>
+            { cartCount && cartCount !== 0 ?
+            <sup className='w-[13px] flex justify-center items-center text-white text-[10px] absolute h-[13px]  rounded-full bg-red-600 ml-4 mt-1'>{cartCount}</sup> : null
+            }
            <svg className='w-[25px] fill-stroke text-gray-500' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
         </svg>

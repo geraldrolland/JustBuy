@@ -15,6 +15,8 @@ const Product = ({prod}) => {
   const rate5 = useRef(null)
   const animateOrderExist = useStore(state => state.func1)
   const animateWishListExist = useStore(state => state.func2)
+  const animateCartIcon = useStore(state => state.func3)
+  const animateWishListIcon = useStore(state => state.func4)
 
 
   useEffect(() => {
@@ -43,18 +45,22 @@ const Product = ({prod}) => {
     }
 
     try {
+
       let wishlist = JSON.parse(localStorage.getItem("wishlist"))
       console.log("try")
+      let isAnimateWishList = true
       wishlist.forEach(elem => {
         if (elem.id === wish.id) {
           animateWishListExist()
+          isAnimateWishList = false
           return
         }
       })
+
       wishlist = wishlist.filter(elem => elem.id !== wish.id)
       wishlist.push(wish)
       localStorage.setItem("wishlist", JSON.stringify(wishlist))
-
+      isAnimateWishList && animateWishListIcon()
     }
     catch (error) {
       console.log("catched")
@@ -77,16 +83,20 @@ const Product = ({prod}) => {
     }
 
     try {
+      let isAnimateCart = true
       let cartList = JSON.parse(localStorage.getItem("cart"))
       cartList.forEach(prod => {
         if (prod.id === cart.id) {
           animateOrderExist()
+          isAnimateCart = false
           return
         }
       })
+      
       cartList = cartList.filter(elem => elem.id !== cart.id)
       cartList.push(cart)
       localStorage.setItem("cart", JSON.stringify(cartList))
+      isAnimateCart && animateCartIcon()
     }
 
     catch(error) {

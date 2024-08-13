@@ -7,6 +7,12 @@ const useStore = create(immer((set, get) => ({
   isUserLoggedIn: true,
   func1: null,
   func2: null,
+  func3: null,
+  func4: null,
+
+  updateAimateWishListIcon: (func) => set(state => {state.func4 = func}),
+
+  updateAnimateCartIcon: (func) => set(state => {state.func3 = func}),
 
   updateAnimateWishListExist: (func) => set(state => {state.func2 = func}),
 

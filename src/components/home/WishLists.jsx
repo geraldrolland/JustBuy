@@ -8,12 +8,13 @@ import { IoCartOutline } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { userStatus } from '../../App'
 import { json } from 'react-router-dom'
+import useStore from '../../customhook/UseStore'
 
 export const WishLists = () => {
 
     const [isRender, setIsRender] = useState(false)
     const [wishlists, setWishlist] = useState([])
-
+    const animateWishListIcon = useStore(state => state.func4)
     const fetchForYou = async () => {
         try {
             const response = await axios.get("https://fakestoreapi.com/products?limit=8")
@@ -34,6 +35,7 @@ export const WishLists = () => {
         wishlistData = wishlistData.filter(wish => wish.id !== prodId)
         localStorage.setItem("wishlist", JSON.stringify(wishlistData))
         console.log("delete prod")
+        animateWishListIcon()
         setIsRender(!isRender)
     }
 
