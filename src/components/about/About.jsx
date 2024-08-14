@@ -36,7 +36,7 @@ const About = () => {
       <div className='w-[50%] h-[100%] overflow-hidden'>
         <motion.img
         animate={{
-            scale: [1.1,  1.0]
+            scale: [1.1, 1.1, 1.0]
           }}
         transition={{
             duration: 0.8,
