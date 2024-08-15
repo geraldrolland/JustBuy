@@ -4,6 +4,8 @@ import { FiPhone } from "react-icons/fi";
 import { CiMail } from "react-icons/ci";
 import { BsTelephone } from "react-icons/bs";
 import Footer from '../home/Footer';
+import { motion } from 'framer-motion';
+
 const Contact = () => {
   return (
     <>
@@ -17,9 +19,18 @@ const Contact = () => {
         <div className='w-[80%]  h-[85%]  flex flex-col justify-between items-center'>
           <div className='w-[100%] h-[40%] border-b-1px border-gray-700'>
             <div className='w-[50%] flex justify-between items-center h-[50px] '>
-              <div className='w-[50px] bg-red-600 h-[100%]  rounded-full flex justify-center items-center'>
+              <motion.div
+              animate={{
+                rotate: ["-30deg", "0deg", "-30deg", "0deg", "-30deg", "0deg", "-30deg", "0deg"]
+              }}
+
+              transition={{
+                duration: 0.5,
+                ease: "easeIn",
+              }}
+               className='w-[50px] bg-red-600 h-[100%]  rounded-full flex justify-center items-center'>
                 <BsTelephone className='text-[25px] text-gray-200' />
-              </div>
+              </motion.div>
               <h1 className='capitalize text-gray-950 font-semibold'>call to us</h1>
             </div>
             <h1 className='mt-[15px]'>We are available 24/7, 7 days a week.</h1>
@@ -27,8 +38,20 @@ const Contact = () => {
           </div>
           <div className='w-[100%] h-[70%] '>
           <div className='w-[52%] mt-[25px] flex justify-between items-center h-[50px] '>
-              <div className='w-[50px] bg-red-600 h-[100%] rounded-full flex justify-center items-center'>
+              <div
+               className='w-[50px] overflow-hidden bg-red-600 h-[100%] rounded-full flex justify-center items-center'>
+                <motion.div
+                animate={{
+                  translateX: ["-100px", "100px", "12.5px", "-12.5px", "10px", "-10px", "5px", "-5px", "2px", "-2px", "0"]
+                }}
+
+                transition={{
+                  duration: 0.8,
+                  ease: "easeIn"
+                }}
+                >
                 <CiMail className='text-[25px] text-gray-200' />
+                </motion.div>
               </div>
               <h1 className='capitalize text-gray-950 font-semibold'>write to us</h1>
             </div>

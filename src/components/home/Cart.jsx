@@ -3,7 +3,7 @@ import { SlArrowDown } from "react-icons/sl";
 import { SlArrowUp } from "react-icons/sl";
 import Footer from './Footer';
 import useStore from '../../customhook/UseStore';
-
+import { useNavigate } from 'react-router-dom';
 export const Cart = () => {
     const [data, setData] = useState([])
     const [noOrders, setNoOrders] = useState("No Orders")
@@ -11,6 +11,7 @@ export const Cart = () => {
     const [subTotal, setSubTotal] = useState(0)
     const cartRef = useRef(null)
     const animateCartIcon = useStore(state => state.func3)
+    const navigateToChechOut = useNavigate()
     const increaseQuantity = (id) => {
         data?.forEach(prod => {
             if (prod.id === id) {
@@ -163,7 +164,7 @@ export const Cart = () => {
                                 <h1 className='text-gray-600 capitalize text-[18px]'>${parseInt(subTotal)}</h1>
 
                             </div>
-                            <button className='h-[50px] w-[250px] mx-auto active:shadow-none block rounded-[4px] shadow-md bg-red-600 text-gray-100 '>Proceed to Checkout</button>
+                            <button onClick={() => navigateToChechOut("/check-out/")} className='h-[50px] w-[250px] mx-auto active:shadow-none block rounded-[4px] shadow-md bg-red-600 text-gray-100 '>Proceed to Checkout</button>
                         </div>
                     </div>
                 </div> : null

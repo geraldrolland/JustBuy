@@ -75,8 +75,11 @@ const MyHeader = () => {
     useEffect(() => {
       updateAnimateCartIcon(animateCartIcon)
       updateAimateWishListIcon(animateWishListIcon)
+      if (localStorage.getItem("wishlist") && localStorage.getItem("cart"))
+      {
       setWishlistCount(JSON.parse(localStorage.getItem("wishlist")).length)
       setCartCount(JSON.parse(localStorage.getItem("cart")).length)
+      }
 
     }, [])
 
