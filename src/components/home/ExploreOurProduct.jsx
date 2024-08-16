@@ -25,13 +25,14 @@ const ExploreOurProduct = () => {
     const scrollRef = useRef(null)
     const [show, setShow] = useState(null)
     const [renderView, setRenderViewState] = useState(false)
+    const [size, setSize] = useState(400)
     const {isPending, isError, isFetching, error, data} = useQuery({
       queryKey: ["exploreourproduct"],
       queryFn: fetchExploreOurProduct
     })
     const displayAllProduct = {
         hideProduct: {
-          height: "400px",
+          height: size + "px",
           overflowY: "hidden"
         },
         viewProduct: {
@@ -95,7 +96,10 @@ const ExploreOurProduct = () => {
       }
 
     useEffect(() => {
-        if (scrollRef.current.scrollHeight > 400) {
+      if (matchMedia("(max-width: 768px)").matches === true) {
+        setSize(300)
+      }
+        if ( scrollRef.current && scrollRef.current.scrollHeight > 400) {
           setRenderViewState(true)
           setShow(true)
           console.log("error1")
@@ -130,8 +134,8 @@ const ExploreOurProduct = () => {
       <motion.div
         variants={displayAllProduct}
         animate={show ? "hideProduct" : "viewProduct"}
-       ref={scrollRef} onScroll={() => handleScroll(event)} className='w-[100%] overflow-x-scroll scroll-smooth tab-container'>
-        <div className='lg:w-[150%] w-[100%] flex flex-wrap place-content-start md:space-x-5 place-items-center'>
+       ref={scrollRef} onScroll={() => handleScroll(event)} className='w-[100%] mt-8 overflow-x-scroll scroll-smooth tab-container'>
+        <div className='lg:w-[150%] w-[100%] flex flex-wrap lg:place-content-start place-content-start md:place-content-between md:space-x-5 place-items-center'>
             {
                 data?.map(product => <Product key={product.id} prod={product} />)
             }
@@ -141,7 +145,7 @@ const ExploreOurProduct = () => {
       <motion.div
 
       onClick={() => updateShow()}
-       className='w-[200px] cursor-pointer bg-red-500 mt-6 h-[40px] border-1px mx-auto flex justify-center items-center text-white'>{show ? "View All Products" : "Hide All Products"}</motion.div> : null
+       className='md:w-[200px] tracking-tight w-[150px] cursor-pointer bg-red-500 mt-6 h-[35px] md:h-[40px]  mx-auto flex justify-center items-center text-white'>{show ? "View All Products" : "Hide All Products"}</motion.div> : null
       }
     </>
   )

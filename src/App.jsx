@@ -17,6 +17,8 @@ import { MyProfile } from './components/home/MyProfile'
 import { MyAddressBook } from './components/home/MyAddressBook'
 import { Cart } from './components/home/Cart'
 import { CheckOut } from './components/home/CheckOut'
+import { createPortal } from 'react-dom'
+import { Menu } from './components/home/Menu'
 const queryClient = new QueryClient()
 export const userStatus = createContext()
 
@@ -102,6 +104,7 @@ function App() {
     }}>
     <QueryClientProvider client={queryClient}>
     <MyHeader/>
+
     <div className='bg-white'>
     <Routes>
       <Route index element={<Home/>}/>
@@ -119,6 +122,9 @@ function App() {
       <Route path={"*"} element={<PageNotFound/>}/>
       <Route/>
     </Routes>
+    {
+      createPortal(<Menu/>, document.getElementById("menu-root"))
+    }
     </div>
     </QueryClientProvider>
     </userStatus.Provider>

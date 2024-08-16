@@ -82,12 +82,12 @@ export const WishLists = () => {
  
     return ( wishlists.length === 0 ? 
     <>
-    <div className='w-[130px] h-[30px] mt-[60px] ml-[5%]    justify-between items-center flex'>
+    <div className='w-[130px] h-[30px] mt-[120px] md:ml-[5%]    justify-between items-center flex'>
         <h1 className='text-gray-500 tracking-wide capitalize'>home</h1>
         <h1 className='text-gray-400 '>/</h1>
         <h1 className='text-gray-900 tracking-wide capitalize'>Wishlist</h1>
     </div>
-    <div className='w-[100%] h-[600px] text-gray-300  capitalize text-[250px] flex justify-center  items-center tracking-wide'> no wishlist</div>
+    <div className='w-[100%] md:h-[600px] text-gray-300  capitalize md:text-[250px] text-[100px] flex justify-center  items-center tracking-wide'> no wishlist</div>
     <Footer/>
     </> 
     

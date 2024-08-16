@@ -16,6 +16,8 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { SlEarphonesAlt } from "react-icons/sl";
 import { GoShieldCheck } from "react-icons/go";
 import Footer from "./Footer"
+import { Menu } from "./Menu"
+import { createPortal } from "react-dom"
 const Home = () => {
     const [isRotate1, setIsRotate1] = useState(null)
     const [isRotate2, setIsRotate2] = useState(null)
@@ -326,6 +328,7 @@ const Home = () => {
              className="w-[100%] text-[14px] lg:text-[12px] lg:font-semibold md:font-bold text-center ">we return money within 30 days</motion.div>
         </div>
     </div>
+
     <Footer/>
     </>
    )

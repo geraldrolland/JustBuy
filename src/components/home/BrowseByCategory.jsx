@@ -68,7 +68,7 @@ const BrowseByCategory = () => {
     <>
     <Title title="Categories" />
     <div className="w-[100%] mt-2 inline-flex justify-between items-center h-[40px] ">
-      <div className="lg:text-3xl font-semibold lg:ml-8 text-xl tracking-wide self-end">Browse By Category</div>
+      <div className="md:text-3xl font-semibold lg:ml-8 text-xl tracking-wide self-end">Browse By Category</div>
       <div className="w-[100px] hidden lg:flex h-full justify-evenly items-center mr-8">
           <button ref={buttonLeftRef} onClick={() => moveLeft()} className="w-[30px] bg-gray-200 h-[30px] rounded-full flex justify-center items-center">
           <svg className="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

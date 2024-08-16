@@ -15,7 +15,7 @@ export const MyAccount = () => {
     }, [])
   return (
     <>
-    <div className='h-[40px] md:w-[90%] mx-auto  mt-[45px] md:mt-[60px] flex justify-between items-center'>
+    <div className='h-[40px] md:w-[90%] mx-auto  mt-[45px] md:mt-[120px] flex justify-between items-center'>
     <div className='w-[160px] h-[30px]    justify-between items-center flex'>
         <h1 className='text-gray-500 tracking-wide capitalize'>home</h1>
         <h1 className='text-gray-400 '>/</h1>

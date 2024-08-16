@@ -29,21 +29,22 @@ export const CheckOut = () => {
 
   return (
     <>
-    <div className='w-[550px]  h-[30px] mt-[120px] ml-[5%]    justify-between items-center flex'>
-        <NavLink className='text-gray-500 tracking-wide capitalize'>Account</NavLink>
+    <div className='md:w-[550px] w-[150px] h-[30px] mt-[120px] md:ml-[5%] justify-between items-center flex'>
+        <NavLink className={"text-gray-500 tracking-wide"}>Home</NavLink>
+        <NavLink className='text-gray-500 md:block hidden tracking-wide capitalize'>Account</NavLink>
+        <h1 className='text-gray-400 md:block hidden'>/</h1>
+        <NavLink to={"/my-account/"} className='text-gray-500 tracking-wide md:block hidden capitalize'>My Account</NavLink>
+        <h1 className='text-gray-400 md:block hidden '>/</h1>
+        <NavLink to={"/"} className='text-gray-500 md:block hidden tracking-wide capitalize'>Products</NavLink>
+        <h1 className='text-gray-400 md:block hidden '>/</h1>
+        <NavLink to={"/cart/"} className='text-gray-500 tracking-wide md:block hidden capitalize'>View Cart</NavLink>
         <h1 className='text-gray-400 '>/</h1>
-        <NavLink to={"/my-account/"} className='text-gray-500 tracking-wide capitalize'>My Account</NavLink>
-        <h1 className='text-gray-400 '>/</h1>
-        <NavLink to={"/"} className='text-gray-500 tracking-wide capitalize'>Products</NavLink>
-        <h1 className='text-gray-400 '>/</h1>
-        <NavLink to={"/cart/"} className='text-gray-500 tracking-wide capitalize'>View Cart</NavLink>
-        <h1 className='text-gray-400 '>/</h1>
-        <NavLink to={""} className='text-gray-900 tracking-wide capitalize'>CheckOut</NavLink>
+        <NavLink to={""} className='text-gray-900 tracking-wide  capitalize'>CheckOut</NavLink>
     </div>
-    <h1 className='capitalize ml-[5%] mt-[40px] text-[35px] tracking-wide'>billing  details</h1>
-    <div className='w-[90%] h-[750px] mb-[200px]  mx-auto mt-[10px] flex justify-between items-center'>
+    <h1 className='capitalize md:ml-[5%] mt-[40px] text-[35px] tracking-wide'>billing  details</h1>
+    <div className='md:w-[90%]  w-[100%] md:flex-nowrap flex-wrap md:h-[750px] md:mb-[200px]  mx-auto mt-[10px] flex justify-between md:flex-row  flex-col items-center'>
 
-        <div className='w-[37%] flex flex-col justify-between ite h-[100%]'>
+        <div className='lg:w-[37%] md:w-[42%] w-[100%] flex flex-col justify-between h-[750px] md:h-[100%]'>
 
             <div className='w-[100%] h-[75px]  flex flex-col justify-between items-start'>
                 <label className='capitalize text-gray-400' for='firstname'>first name <sup className='text-red-800'>*</sup></label>
@@ -80,8 +81,8 @@ export const CheckOut = () => {
                 <h1 className='font-semibold text-gray-900 tracking-tight'>Save this information for faster check-out next time </h1>
             </div>
         </div>
-        <div  className='w-[45%]   h-[100%]   '>
-            <div   className=' w-[75%]  flex justify-center  items-center'>
+        <div  className='lg:w-[45%] w-[100%] mb-[250px] md:mb-0 md:mt-0 mt-12 md:w-[54%] h-[500px]    md:h-[100%]   '>
+            <div   className=' lg:w-[75%] md:w-[80%] w-[100%]   flex justify-center  items-center'>
                 <div ref={containerRef}  className='w-[100%] flex flex-wrap tab-container overflow-y-scroll'>
                 {
                     orders?.map(order => 
@@ -99,26 +100,26 @@ export const CheckOut = () => {
                 }
                 </div>
             </div>
-            <div className='w-[75%] h-[45px] border-b-1px flex justify-between items-center border-gray-500'>
+            <div className='lg:w-[75%] md:w-[80%] w-[100%] h-[45px] border-b-1px flex justify-between items-center border-gray-500'>
                 <h1 className='capitalize text-gray-800 text-[18px]'>subtotal</h1>
                 <h1 className='text-gray-800 proportional-nums'>$1750</h1>
             </div>
-            <div className='w-[75%] h-[45px] border-b-1px flex justify-between items-center border-gray-500'>
+            <div className='lg:w-[75%] md:w-[80%] w-[100%] h-[45px] border-b-1px flex justify-between items-center border-gray-500'>
                 <h1 className='capitalize text-gray-800 text-[18px]'>shipping</h1>
                 <h1 className='text-gray-800 capitalize'>free</h1>
             </div>
-            <div className='w-[75%] h-[45px]  flex justify-between items-center '>
+            <div className='lg:w-[75%] md:w-[80%] w-[100%] h-[45px]  flex justify-between items-center '>
                 <h1 className='capitalize text-gray-800 text-[18px]'>total</h1>
                 <h1 className='text-gray-800 proportional-nums'>$1750</h1>
             </div>
-            <div className='w-[75%] h-[40px] mt-[20px]   flex justify-between items-center'>
+            <div className='lg:w-[75%] w-[100%] h-[40px] mt-[20px]   flex justify-between items-center'>
                 <div className='w-[85px] h-[100%] flex justify-start space-x-4 items-center'>
-                    <div className='w-[28px] flex justify-center items-center h-[28px] border-1px border-gray-900 rounded-full'>
+                    <div className='md:w-[28px] flex justify-center w-[24px] h-[24px] items-center md:h-[28px] border-1px border-gray-900 rounded-full'>
                         <div className='w-[16px] h-[16px]  rounded-full bg-gray-950'></div>
                     </div>
                     <h1 className='text-gray-900'>Bank</h1>
                 </div>
-                <div className='w-[260px] relative flex justify-between items-center h-[100%]'>
+                <div className='md:w-[260px] w-[240px] relative flex justify-between items-center h-[100%]'>
                     <motion.div  className='w-[24%] h-[100%]  rounded-md absolute border-2px z-10 shadow-lg bg-gray-200 backdrop-filter backdrop-blur-md border-green-500'
                     animate={{
                         translate: amount + "%",
@@ -128,23 +129,23 @@ export const CheckOut = () => {
                         ease: "easeIn"
                     }}
                     ></motion.div>
-                    <img onClick={() => setAmount(0)} className='w-[23%] filter drop-shadow-2xl cursor-pointer relative z-20' src={paypal} alt="paypal" />
-                    <img onClick={() => setAmount(106)} className='w-[23%] filter drop-shadow-2xl  cursor-pointer relative z-20 ' src={mastercard} alt="mastercard" />
-                    <img onClick={() => setAmount(218)} className='w-[23%] cursor-pointer relative z-20 filter drop-shadow-2xl' src={visa} alt="visa" />
-                    <img onClick={() => setAmount(318)} className='w-[23%] filter drop-shadow-2xl cursor-pointer relative z-20' src={stripe} alt="stripe" />
+                    <img onClick={() => setAmount(0)} className='md:w-[23%] w-[20%] filter drop-shadow-2xl cursor-pointer relative z-20' src={paypal} alt="paypal" />
+                    <img onClick={() => setAmount(106)} className='md:w-[23%] w-[20%] filter drop-shadow-2xl  cursor-pointer relative z-20 ' src={mastercard} alt="mastercard" />
+                    <img onClick={() => setAmount(218)} className='md:w-[23%] w-[20%] cursor-pointer relative z-20 filter drop-shadow-2xl' src={visa} alt="visa" />
+                    <img onClick={() => setAmount(318)} className='md:w-[23%] w-[20%] filter drop-shadow-2xl cursor-pointer relative z-20' src={stripe} alt="stripe" />
                 </div>
             </div>
             <div className='w-[180px] mt-[15px] h-[40px]  flex justify-start space-x-4 items-center'>
-            <div className='w-[28px] flex justify-center items-center h-[28px] border-1px border-gray-900 rounded-full'>
+            <div className='md:w-[28px] w-[24px] h-[24px] flex justify-center items-center md:h-[28px] border-1px border-gray-900 rounded-full'>
              <div className='w-[16px] h-[16px]  rounded-full bg-gray-950'></div>
             </div>
             <h1 className='text-gray-950 '>Cash on Delivery</h1>
             </div>
             <div className='w-[100%] h-[45px]  flex justify-between items-center mt-[25px]'>
-                <input className='w-[300px] h-[100%] border-1px border-gray-800 focus:outline-none pl-4 rounded-[2px]' type="text" placeholder='Coupon Code' />
-                <button className='w-[210px] h-[100%]  shadow-md bg-red-600 rounded-[4px] text-gray-100 capitalize'>apply coupon</button>
+                <input className='lg:w-[300px] md:w-[270px] h-[100%] border-1px border-gray-800 focus:outline-none pl-4 rounded-[2px]' type="text" placeholder='Coupon Code' />
+                <button className='lg:w-[210px] md:tracking-normal tracking-tight w-[130px] md:w-[150px] h-[100%]  shadow-md bg-red-600 rounded-[4px] text-gray-100 capitalize'>apply coupon</button>
             </div>
-            <button className='mt-[45px] capitalize  w-[170px] text-gray-100  shadow-md bg-red-600 h-[45px] rounded-[4px]'>place order</button>
+            <button className='mt-[45px] capitalize md:w-[130px]  lg:w-[170px] text-gray-100  shadow-md bg-red-600 h-[45px] md:tracking-normal tracking-tight w-[120px] rounded-[4px]'>place order</button>
         </div>
     </div>
    

@@ -132,9 +132,9 @@ const FlashSale = () => {
     <>
     
     <Title title="Today's"/>
-        <div className="md:w-[95%] mt-2 w-[100%]  h-[40px] inline-flex justify-between items-center  lg:ml-8">
-          <div className="lg:w-[35%] md:w-[45%] h-full w-[100%]  flex justify-between">
-            <div className="lg:text-3xl md:text-xl  tracking-wide font-semibold text-black text-[22px] self-end">Flash Sales</div>
+        <div className="md:w-[95%] mt-2 w-[100%] h-[40px] md:h-[50px]  lg:h-[40px] inline-flex justify-between items-center  lg:ml-8">
+          <div className="lg:w-[35%]  md:w-[60%] h-full w-[100%]  flex justify-between">
+            <div className="lg:text-3xl md:text-3xl  tracking-wide font-semibold text-black text-[22px] self-end">Flash Sales</div>
             <Clock/>
         </div>
         <div className="w-[100px] hidden lg:flex h-full justify-evenly items-center">
@@ -154,7 +154,7 @@ const FlashSale = () => {
         variants={displayAllProduct}
         animate={show ? "hideProduct" : "viewProduct"} 
          ref={scrollRef}  onScroll={() => handleScroll(event)}  className="lg:w-[100%]   w-[100%] mt-4 tab-container overflow-x-scroll overflow-y-hidden scroll-smooth">
-          <div ref={scrollContainerRef} className="lg:w-[150%]   md:w-[100%] w-[100%]  md:place-content-evenly place-content-between flex flex-wrap   
+          <div ref={scrollContainerRef} className="lg:w-[150%]   md:w-[100%] w-[100%]  md:place-content-between place-content-between flex flex-wrap   
           place-items-center lg:place-content-start ">
            {
                data?.map(product => (<Product key={product.id}  prod={product}/>))
@@ -163,8 +163,7 @@ const FlashSale = () => {
         </motion.div>
         {renderView ? <button
         onClick={() => setShow(!show)}
-        className="w-[150px] h-[40px] text-white block  bg-red-500 mx-auto mt-10">{show ? "View All Products" : "Hide All Products"}</button> : null}
-
+        className="md:w-[150px] w-[125px] h-[35px] tracking-tight md:h-[40px] text-white block  bg-red-500 mx-auto mt-10">{show ? "View All Products" : "Hide All Products"}</button> : null}
     </>
   )
 }

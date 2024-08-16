@@ -9,7 +9,11 @@ import { OrderExist } from './home/OrderExist'
 import { WishListExist } from './home/WishListExist'
 import { WishLists } from './home/WishLists'
 import { useAnimate } from 'framer-motion'
-
+import { FiUser } from "react-icons/fi";
+import { FiShoppingBag } from "react-icons/fi";
+import { RxCrossCircled } from "react-icons/rx";
+import { GoStar } from "react-icons/go";
+import { CiLogout } from "react-icons/ci";
 const MyHeader = () => {
   const [cartcountRef, animateCart] = useAnimate()
   const [wishlistcountRef, animateWishlist] = useAnimate()
@@ -21,7 +25,7 @@ const MyHeader = () => {
 
   const [wishlistCount, setWishlistCount] = useState(0)
   const [cartCount, setCartCount] = useState(0)
-
+  const accountRef = useRef(null)
   const animateCartIcon = () => {
     if (localStorage.getItem("cart")) {
     setCartCount(JSON.parse(localStorage.getItem("cart")).length)
@@ -71,8 +75,25 @@ const MyHeader = () => {
             borderBottom: isActive ? "gray solid 2px" : "transparent",
         }
     }
+    const dropDownMenu = () => {
+      if (accountRef.current) {
+        accountRef.current.classList.remove("translate-y-[-130%]") 
+        accountRef.current.classList.add("translate-y-[0]")
+      }
+    }
+
+    const shrinkMenu = () => {
+      if (accountRef.current) {
+        accountRef.current.classList.remove("translate-y-[0]")
+        accountRef.current.classList.add("translate-y-[-130%]")
+
+      }
+    }
 
     useEffect(() => {
+      document.body.onclick = () => {
+        shrinkMenu()
+      }
       updateAnimateCartIcon(animateCartIcon)
       updateAimateWishListIcon(animateWishListIcon)
       if (localStorage.getItem("wishlist") && localStorage.getItem("cart"))
@@ -86,9 +107,9 @@ const MyHeader = () => {
   return (
     <>
     <div className='w-full h-[45px]  md:h-[60px] top-0 right-0  border-1px flex place-content-evenly place-items-center fixed  backdrop-filter backdrop-blur-xl z-30'>
-        <div className="md:w-[20%] w-[30%]  h-full lg:tracking-wider lg:text-4xl capitalize flex justify-start text-xl  items-center font-semibold tracking-wide md:ml-[35px] md:text-2xl text-gray-400">
+        <NavLink to={"/"}  className="md:w-[20%] w-[30%]  h-full lg:tracking-wider lg:text-4xl capitalize flex justify-start text-xl  items-center font-semibold tracking-wide md:ml-[35px] md:text-2xl text-gray-400">
             justBuy
-        </div>
+        </NavLink>
         <div className="md:flex lg:w-[40%] md:w-[50%] h-full  hidden place-content-evenly place-items-center ">
             <NavLink to={"/"} style={setActiveLink} className={' md:w-[11%] lg:w-[8%] h-[50%] text-gray-400  flex justify-center items-center  tracking-wide '}>
                 Home
@@ -132,10 +153,9 @@ const MyHeader = () => {
         </NavLink>
         { isUserLoggedIn ? 
         <NavLink to={"my-account/my-profile"}
-        onMouseOver={() => setShowStatus(true)}
-        onClick={() => setShowStatus(!showStatus)}
+        onMouseOver={() => dropDownMenu()}
 
-         className='w-[30px] h-[30px] rounded-full flex justify-center items-center'>
+         className='w-[30px] h-[30px] rounded-full md:flex justify-center items-center border-1px hidden'>
         <svg className='w-[100%] fill-stroke text-gray-500' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
       </svg>
@@ -144,52 +164,29 @@ const MyHeader = () => {
         </div>
 
         {
-            createPortal(<motion.div
-                variants={variant}
-                initial={"hide"}
-                animate={showStatus ? "show" : "hide"} 
-                onMouseLeave={() => setShowStatus(false)}
-
-             className='z-20  bg-gray-200 bg-opacity-10 flex top-14 flex-col place-content-between  bg-gradient-to-tr from-slate-400 via-slate-300 to-zinc-300 -mt-[10px] w-[230px] absolute right-0 lg:right-[35px] h-[250px]   backdrop-filter backdrop-blur-lg'>
-                <NavLink to={""} className={' active:shadow-none hover:bg-zinc-400 hover:rounded-full hover:shadow-md transition-all duration-100 ease-in-out transform translate-x-0 hover:-translate-x-5 flex justify-start space-x-4 items-center  h-[15%]'}>
-                <svg className='w-[25px] fill-stroke text-white ml-5' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-              </svg>
-              <div className='tracking-wide text-white'>Manage My Account</div>
-              </NavLink>
-              <NavLink to={""} className={'  hover:rounded-full  hover:bg-zinc-400 active:shadow-none hover:shadow-md  transition-all duration-100 ease-in-out transform translate-x-0 hover:-translate-x-5 flex justify-start space-x-4 items-center h-[15%]'}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className='w-[25px] fill-stroke text-white ml-5'>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-            </svg>
-              <div className='tracking-wide text-white'>My Order</div>
-              </NavLink>
-              <NavLink to={""} className={' active:shadow-none  hover:bg-zinc-400 hover:rounded-full shadow-none hover:shadow-md  transition-all duration-100 ease-in-out transform translate-x-0 hover:-translate-x-5 flex justify-start space-x-4 items-center h-[15%]'}>
-                <div className='w-[25px] h-[25px] ml-5 border-1px rounded-full'>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className='w-[100%] fill-stroke text-white'>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                 </svg>
-                </div>
-              <div className='tracking-wide text-white'>My Cancellations</div>
-              </NavLink>
-              <NavLink to={""} className={' active:shadow-none  hover:bg-zinc-400 hover:rounded-full shadow-none hover:shadow-md  transition-all duration-100 ease-in-out transform translate-x-0 hover:-translate-x-5 flex justify-start space-x-4 items-center h-[15%]'}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className='w-[25px] fill-stroke text-white ml-5'>
-             <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-            </svg>
-              <div className='tracking-wide text-white'>My Reviews</div>
-              </NavLink>
-
-              <NavLink to={""} className={' active:shadow-none hover:bg-zinc-400 hover:rounded-full shadow-none transition-all duration-100 ease-in-out transform translate-x-0 hover:-translate-x-5 hover:shadow-md flex justify-start space-x-4 items-center h-[15%]'}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className='w-[25px] ml-5 fill-stroke text-white'>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-             </svg>
-              <div className='tracking-wide text-white'>Logout</div>
-              </NavLink>
-              <div className={'flex absolute w-full bottom-0 justify-center  items-center h-[20%] bg-gray-600'}> 
-                <div className='w-full h-full py-4 pl-5 tracking-wide text-center text-white truncate'>
-              Welcome, {userEmail} geraldrolland@gmail.com
+            createPortal(
+            <div ref={accountRef} className='w-[270px] transition-all rounded-sm duration-400 backdrop-filter backdrop-blur-3xl bg-gray-900 bg-opacity-30 ease-in-out h-[220px] transform translate-y-[-130%] flex  right-0 top-[60px] z-10 fixed  flex-col justify-between items-center'>
+              <div className='w-[100%]   h-[20%] flex justify-start items-center'>
+              <FiUser className='text-[32px] text-white ml-4' />
+              <div className='text-xl capitalize ml-4 text-white'>manage my account</div>
               </div>
+              <div className='w-[100%]   h-[20%] flex justify-start items-center'>
+              <FiShoppingBag className='text-[32px] text-white ml-4' />
+              <div className='text-xl capitalize ml-4 text-white'>my order</div>
               </div>
-            </motion.div>, document.getElementById("account-root"))
+              <div className='w-[100%]   h-[20%] flex justify-start items-center '>
+              <RxCrossCircled className='text-[32px] text-white ml-4' />
+              <div className='text-xl capitalize ml-4 text-white'>my cancellation</div>
+              </div>
+              <div className='w-[100%]   h-[20%] flex justify-start items-center'>
+              <GoStar className='text-[32px] text-white ml-4' />
+              <div className='text-xl capitalize ml-4 text-white'>my reviews</div>
+              </div>
+              <div className='w-[100%]   h-[20%] flex justify-start items-center'>
+              <CiLogout className='text-[32px] text-white ml-4' />
+              <div className='text-xl capitalize ml-4 text-white'>logout</div>
+              </div>
+            </div>, document.getElementById("account-root"))
         }
         {
             createPortal(<motion.div

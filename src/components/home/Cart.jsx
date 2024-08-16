@@ -86,7 +86,7 @@ export const Cart = () => {
     }, [isRender])
   return (
     <>
-        <div className='w-[100px] h-[30px] mt-[60px] ml-[5%]    justify-between items-center flex'>
+        <div className='w-[100px] mt-[120px] h-[30px] ml-[5%]    justify-between items-center flex'>
         <h1 className='text-gray-500 tracking-wide capitalize'>home</h1>
         <h1 className='text-gray-400 '>/</h1>
         <h1 className='text-gray-900 tracking-wide capitalize'>Cart</h1>
@@ -127,7 +127,7 @@ export const Cart = () => {
               <h1 className='text-[18px] md:text-[16px]'>${parseInt(product.price) * product.quantity}</h1> 
               </div>
           </div>
-      </div>) : <div className='w-[95%] h-[400px] mx-auto  justify-center items-center flex text-center text-[250px] text-gray-300'>{noOrders}</div>
+      </div>) : <div className='w-[95%] text-[100px] md:h-[400px] mx-auto  justify-center items-center flex text-center md:text-[250px] text-gray-300'>{noOrders}</div>
      
     }
     </div>
@@ -143,12 +143,12 @@ export const Cart = () => {
     }
 
     {
-                data.length ? <div className='md:w-[90%] w-[100%] mb-20 md:h-[330px] h-[400px]   mx-auto mt-20 flex md:flex-row flex-col justify-between items-center'>
-                    <div className='md:w-[40%] w-[100%] self-start flex justify-between items-center  h-[40px] '>
-                        <input className='md:w-[55%] w-[58%]  rounded-[4px] focus:outline-[1px] border-gray-500 focus:border-none focus:outline-gray-700 pl-4 tracking-wide h-[100%] border-1px shadow-sm' type="text" placeholder='' />
-                        <button className='md:w-[40%] w-[35%] shadow-sm h-[100%] bg-red-600 rounded-sm text-gray-100 capitalize'>apply coupon</button>
+                data.length ? <div className='md:w-[90%]  w-[100%] mb-20 md:h-[330px] h-[400px]   mx-auto mt-20 flex md:flex-row flex-col justify-between items-center'>
+                    <div className='lg:w-[40%] md:w-[46%] w-[100%] self-start flex justify-between items-center  h-[40px] '>
+                        <input className='lg:w-[55%] md:w-[60%] w-[58%]  rounded-[4px] focus:outline-[1px] border-gray-500 focus:border-none focus:outline-gray-700 pl-4 tracking-wide h-[100%] border-1px shadow-sm' type="text" placeholder='' />
+                        <button className='lg:w-[40%] w-[35%] shadow-sm h-[100%] bg-red-600 md:tracking-normal tracking-tight rounded-sm text-gray-100 capitalize'>apply coupon</button>
                     </div>
-                    <div className='md:w-[44%] w-[100%] rounded-[4px] border-gray-400 h-[80%] md:h-[100%] border-2px flex justify-center items-center'>
+                    <div className='lg:w-[44%] md:w-[52%] w-[100%] rounded-[4px] lg:border-gray-400 h-[80%] md:h-[100%] lg:border-2px flex justify-center items-center'>
                         <div className='w-[90%] h-[85%]'>
                             <h1 className='text-[22px] capitalize text-gray-600 font-semibold tracking-wide'>cart total</h1>
                             <div className='w-[100%] h-[50px] border-b-2px border-gray-300 flex justify-between items-center'>
@@ -164,7 +164,7 @@ export const Cart = () => {
                                 <h1 className='text-gray-600 capitalize text-[18px]'>${parseInt(subTotal)}</h1>
 
                             </div>
-                            <button onClick={() => navigateToChechOut("/check-out/")} className='h-[50px] w-[250px] mx-auto active:shadow-none block rounded-[4px] shadow-md bg-red-600 text-gray-100 '>Proceed to Checkout</button>
+                            <button onClick={() => navigateToChechOut("/check-out/")} className='h-[50px] md:w-[200px] lg:w-[250px] mx-auto active:shadow-none block rounded-[4px] shadow-md w-[180px] md:tracking-normal tracking-tight bg-red-600 text-gray-100 '>Proceed to Checkout</button>
                         </div>
                     </div>
                 </div> : null

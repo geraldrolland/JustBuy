@@ -99,7 +99,7 @@ const SignUp = () => {
   return (
     <>
     <div className="w-[100%] md:mt-[60px] mt-[45px]  inline-flex justify-between h-[500px] items-center mb-2 md:mb-8 lg:mb-24 lg:h-[650px]  md:h-[550px]">
-      <img className="w-[50%] md:block hidden h-[100%]" src={shopCart}/>
+      <img className="w-[49%] md:block hidden h-[100%]" src={shopCart}/>
       <div className="md:w-[50%] lg:w-[50%]  w-[100%] flex relative justify-center items-center h-[100%]">
         <div className="md:w-[100%]  lg:w-[55%] w-[100%] h-[100%] relative lg:h-[90%]  ">
 
@@ -186,14 +186,14 @@ const SignUp = () => {
             Create an account
           </h1>
           <h1 className="mt-4 text-gray-800">Enter your details below</h1>
-          <input onChange={(e) => setCreateUserInput({...createUserInput, first_name: e.target.value}) } value={createUserInput.first_name} className="w-[100%] elem lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-4 md:mt-6 lg:mt-8 pl-4 tracking-wide" type="text" placeholder="First Name" />
-          <input onChange={(e) => setCreateUserInput({...createUserInput, last_name: e.target.value})} value={createUserInput.last_name} className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Last Name" />
-          <input onChange={(e) => setCreateUserInput({...createUserInput, email: e.target.value})} value={createUserInput.email} className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Last Name" />
-          <input onChange={(e) => setCreateUserInput({...createUserInput, password: e.target.value})} value={createUserInput.password} className="w-[100%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Password" />
-          <button onClick={handleCreateUser} className="w-[100%] h-[50px] lg:h-[45px]  mt-5 text-gray-200 tracking-wide rounded-full bg-red-600 ">
+          <input onChange={(e) => setCreateUserInput({...createUserInput, first_name: e.target.value}) } value={createUserInput.first_name} className="lg:w-[100%] elem w-[99%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-4 md:mt-6 lg:mt-8 pl-4 tracking-wide" type="text" placeholder="First Name" />
+          <input onChange={(e) => setCreateUserInput({...createUserInput, last_name: e.target.value})} value={createUserInput.last_name} className="lg:w-[100%] lg:h-[40px] md:h-[45px] h-[40px] md:w-[99%] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Last Name" />
+          <input onChange={(e) => setCreateUserInput({...createUserInput, email: e.target.value})} value={createUserInput.email} className="lg:w-[100%] w-[99%] lg:h-[40px] md:h-[45px] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Last Name" />
+          <input onChange={(e) => setCreateUserInput({...createUserInput, password: e.target.value})} value={createUserInput.password} className="lg:w-[100%] lg:h-[40px] md:h-[45px] md:w-[99%] h-[40px] border-1px border-gray-900 focus:outline-none rounded-full mt-5 pl-4 tracking-wide" type="text" placeholder="Password" />
+          <button onClick={handleCreateUser} className="lg:w-[100%] md:w-[99%] h-[50px] lg:h-[45px]  mt-5 text-gray-200 tracking-wide rounded-full bg-red-600 ">
             Create Account
           </button>
-          <div className="w-[100%] h-[45px] border-gray-500 shadow-sm rounded-full border-1px  mt-3 flex justify-center items-center">
+          <div className="lg:w-[100%] w-[99%] h-[45px] border-gray-500 shadow-sm rounded-full border-1px  mt-3 flex justify-center items-center">
           <FcGoogle className="w-[30px] h-[30px]" />
           <h1 className="text-gray-900 ml-2 tracking-wide">
             Sign up with Google

@@ -23,11 +23,11 @@ const About = () => {
         <h1 className='text-gray-400 '>/</h1>
         <h1 className='text-gray-900 tracking-wide capitalize'>about</h1>
     </div>
-    <div className='w-[95%] ml-[5%] mt-[20px] h-[480px] justify-center items-center flex'>
+    <div className='lg:w-[95%] w-[100%] lg:ml-[5%] mt-[20px] h-[480px] justify-center items-center flex'>
       <div className='w-[50%] flex items-center h-[100%]'>
-        <div className=' relative w-[90%] h-[58%]'>
+        <div className=' relative w-[97%] lg:w-[90%]  lg:h-[58%] md:h-[70%]'>
         <h1 className='text-[45px] text-gray-950 tracking-wider capitalize font-semibold'>our story</h1>
-        <h1 className='w-[100%] flex flex-wrap tracking-tight text-gray-900 mt-[25px]'>Launched in 2015, justBuy is South Asia's premier online shopping marketplace with an active presence in Bangladesh, supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sailers and 300 brands and sercves 3  millions customers across the region.</h1>
+        <h1 className='w-[100%]  flex flex-wrap tracking-tight text-gray-900 mt-[25px]'>Launched in 2015, justBuy is South Asia's premier online shopping marketplace with an active presence in Bangladesh, supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sailers and 300 brands and sercves 3  millions customers across the region.</h1>
         <h1 className='w-[100%] flex flex-wrap tracking-tight text-gray-900 mt-[20px] absolute bottom-0'>
           justBuy has more than 1 Million products to offer, growing at a very fast. justBuy offers a diverse assotment in categories ranging from consumer
         </h1>
@@ -45,37 +45,36 @@ const About = () => {
          className='w-[100%] h-[100%] object-cover' src={africans} alt="african ladies" />
       </div>
     </div>
-    <div className='w-[90%] mt-[80px] h-[200px] mx-auto flex justify-between items-center'>
-      <div className='w-[250px] h-[100%] border-1px border-gray-400 shadow-sm flex justify-evenly items-center rounded-[4px] flex-col'>
+    <div className='lg:w-[90%] w-[100%] mt-[80px] h-[200px] mx-auto flex justify-evenly items-center'>
+      <div className='lg:w-[250px] md:w-[200px] h-[200px] lg:h-[100%] border-1px border-gray-400 shadow-sm flex justify-evenly items-center rounded-[4px] flex-col'>
         <div className='w-[50px] h-[50px] border-1px rounded-full flex justify-center items-center bg-black ring-8 ring-gray-300'>
           <img className='object-cover w-[30px] ' src={group} alt="group-icon" />
         </div>
         <div className='w-[80%] h-[55px] flex flex-col  justify-between items-center '>
           <h1 className='text-[30px] font-semibold tracking-wide'>10.5k</h1>
-          <h1 className='text-gray-800 text-[18px]'>Sailers active our site</h1>
+          <h1 className='text-gray-800 lg:text-[18px] md:tracking-tight'>Sailers active our site</h1>
         </div>
       </div>
-      <div className='w-[250px] h-[100%] border-1px border-gray-400 shadow-sm flex justify-evenly items-center rounded-[4px] flex-col'>
+      <div className='lg:w-[250px] md:w-[200px] md:h-[200px]  lg:h-[100%] border-1px border-gray-400 shadow-sm flex justify-evenly items-center rounded-[4px] flex-col'>
         <div className='w-[50px] h-[50px] border-1px rounded-full flex justify-center items-center bg-black ring-8 ring-gray-300'>
           <div className='text-white w-[30px] h-[30px] border-2px rounded-full flex justify-center items-center text-[22px]'>$</div>
         </div>
         <div className='w-[80%] h-[55px] flex flex-col  justify-between items-center'>
           <h1 className='text-[30px] font-semibold tracking-wide'>33k</h1>
-          <h1 className='text-gray-800 text-[18px]'>Monthly product sale</h1>
+          <h1 className='text-gray-800 tracking-tight lg:text-[18px]'>Monthly product sale</h1>
         </div>
       </div>
-      <div className='w-[250px] h-[100%] border-1px border-gray-400 shadow-sm flex justify-evenly items-center rounded-[4px] flex-col'>
+      <div className='lg:w-[250px] w-[200px] h-[200px] md:h-[100%] border-1px border-gray-400 shadow-sm flex justify-evenly items-center rounded-[4px] flex-col'>
         <div className='w-[50px] h-[50px] border-1px rounded-full flex justify-center items-center overflow-hidden bg-black ring-8 ring-gray-300'>
           <img
-
           className='object-cover w-[30px] ' src={shopping} alt="group-icon" />
         </div>
         <div className='w-[100%] h-[55px] flex flex-col  justify-between items-center'>
           <h1 className='text-[30px] font-semibold tracking-wide'>45.5k</h1>
-          <h1 className='text-gray-800 text-[18px]'>Customer active in our site</h1>
+          <h1 className='text-gray-800 tracking-tight lg:text-[18px]'>Customer active in our site</h1>
         </div>
       </div>
-      <div className='w-[250px] h-[100%] border-1px border-gray-400 shadow-sm flex justify-evenly items-center rounded-[4px] flex-col'>
+      <div className='lg:w-[250px] w-[200px] h-[200px] lg:h-[100%] border-1px border-gray-400 shadow-sm flex justify-evenly items-center rounded-[4px] flex-col'>
         <div className='w-[50px] h-[50px] border-1px rounded-full flex justify-center items-center bg-black ring-8 ring-gray-300'>
           <div className='w-[30px] h-[30px]  flex justify-center items-center relative'>
             <small className='absolute text-white top-[10px] '>$</small>
@@ -84,11 +83,11 @@ const About = () => {
         </div>
         <div className='w-[100%] h-[55px] flex flex-col  justify-between items-center '>
           <h1 className='text-[30px] font-semibold tracking-wide'>25k</h1>
-          <h1 className='text-gray-800 text-[18px]'>Anual gross sale in our site</h1>
+          <h1 className='text-gray-800 tracking-tight lg:text-[18px]'>Anual gross sale in our site</h1>
         </div>
       </div>
     </div>
-    <div className='w-[90%]  h-[500px] mx-auto mt-[60px] flex justify-between items-center'>
+    <div className='lg:w-[90%] w-[97%] md:h-[440px]  lg:h-[500px] mx-auto mt-[60px] flex justify-between items-center'>
       <div className='w-[30%] h-[100%]'>
         <div className='w-[100%] h-[80%] flex justify-center items-end border-1px bg-gray-100'>
         <img className='h-[95%]' src={tom} alt="" />
@@ -126,7 +125,7 @@ const About = () => {
         </div>
       </div>
     </div>
-    <div className='w-[200px] flex justify-between items-center h-[20px]  mx-auto mt-[30px]'>
+    <div className='w-[200px] flex justify-between items-center h-[20px]  mx-auto mt-[60px]'>
       <div className='w-[20px] h-[100%] rounded-full  bg-gray-400'></div>
       <div className='w-[20px] h-[100%] rounded-full  bg-gray-400'></div>
       <div className='w-[15px] ring-2 ring-offset-2 ring-gray-400 h-[15px] rounded-full  bg-red-600'></div>

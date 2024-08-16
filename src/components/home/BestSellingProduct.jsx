@@ -6,7 +6,7 @@ import { useRef } from 'react'
 import axios from 'axios'
 import { motion } from 'framer-motion'
 import { useQuery } from '@tanstack/react-query'
-
+import FlashSaleLoader from '../loaders/FlashSaleLoader'
 const fetchBestSellingProduct = async () => {
   console.log("is fetching")
   try {
@@ -22,14 +22,14 @@ const BestSellingProduct = () => {
     const scrollRef = useRef(null)
     const [show, setShow] = useState(null)
     const [renderView, setRenderViewState] = useState(false)
-
+    const [size, setSize] = useState(400)
     const {isPending, isFetching, data, isError} = useQuery({
       queryKey: ["bestsellingproduct"],
       queryFn: fetchBestSellingProduct
     })
     const displayAllProduct = {
         hideProduct: {
-          height: "400px",
+          height: size + "px",
           overflowY: "hidden"
         },
         viewProduct: {
@@ -39,7 +39,10 @@ const BestSellingProduct = () => {
       }
     
     useEffect(() => {
-        if (scrollRef.current.scrollHeight > 400) {
+      if (matchMedia("(max-width: 768px)").matches === true) {
+        setSize(300)
+      }
+        if (scrollRef.current &&scrollRef.current.scrollHeight > 400) {
           setRenderViewState(true)
           setShow(true)
           console.log("error1")
@@ -54,22 +57,24 @@ const BestSellingProduct = () => {
       }, [data])
 
   return (
+    isPending && isFetching ? <FlashSaleLoader/> :
     <>
+        
       <Title title={"This Month"} />
-      <div className='w-[100%] h-[40px]   mt-2 flex place-content-between items-center'>
+      <div className='w-[100%] h-[40px]   mt-2 flex place-content-between items-center '>
         <div className='md:text-3xl tracking-wide font-bold lg:ml-8 text-xl'>Best Selling Products</div>
         { renderView ? 
             <button onClick={() => {
                 setShow(!show)
             }
-            } className='block text-white mr-8 w-[130px] bg-red-500 h-[100%] border-1px'>{show ? "View all" :  "Hide all"}</button>
+            } className='block text-white md:mr-8 w-[100px] md:w-[130px] bg-red-500 md:h-[100%] h-[35px] '>{show ? "View all" :  "Hide all"}</button>
             : null
         }
       </div>
       <motion.div
       variants={displayAllProduct}
       animate={show ? "hideProduct" : "viewProduct"} 
-      ref={scrollRef} className='w-[100%] flex flex-wrap place-content-start md:space-x-9 place-items-center mt-8'>
+      ref={scrollRef} className='w-[100%] flex flex-wrap place-content-between lg:place-content-start md:space-x-9 place-items-center mt-8'>
         {isFetching && isPending ? "loading..." :
             data?.map(product => <Product key={product.id} prod={product} />)
         }

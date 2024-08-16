@@ -14,11 +14,11 @@ const Contact = () => {
         <h1 className='text-gray-400 '>/</h1>
         <h1 className='text-gray-900 tracking-wide capitalize'>contact</h1>
     </div>
-    <div className='w-[90%] mb-[150px] h-[500px]  mx-auto  mt-[45px]  flex justify-between items-center'>
-      <div className='w-[30%] shadow-lg h-[100%]  flex justify-center items-center'>
+    <div className='lg:w-[90%] w-[100%] mb-[150px] h-[500px]  mx-auto  mt-[45px]  flex justify-between items-center'>
+      <div className='w-[30%] lg:shadow-lg h-[100%]  flex justify-center items-center'>
         <div className='w-[80%]  h-[85%]  flex flex-col justify-between items-center'>
           <div className='w-[100%] h-[40%] border-b-1px border-gray-700'>
-            <div className='w-[50%] flex justify-between items-center h-[50px] '>
+            <div className='lg:w-[50%] w-[70%] flex justify-between items-center h-[50px] '>
               <motion.div
               animate={{
                 rotate: ["-30deg", "0deg", "-30deg", "0deg", "-30deg", "0deg", "-30deg", "0deg"]
@@ -37,7 +37,7 @@ const Contact = () => {
             <h1 className='mt-[15px]'>Phone: +8801611112222</h1>
           </div>
           <div className='w-[100%] h-[70%] '>
-          <div className='w-[52%] mt-[25px] flex justify-between items-center h-[50px] '>
+          <div className='lg:w-[52%] w-[70%] mt-[25px] flex justify-between items-center h-[50px] '>
               <div
                className='w-[50px] overflow-hidden bg-red-600 h-[100%] rounded-full flex justify-center items-center'>
                 <motion.div
@@ -61,7 +61,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div className='w-[68%] shadow-lg flex justify-center items-center h-[100%]'>
+      <div className='w-[68%] lg:shadow-lg flex justify-center items-center h-[100%]'>
         <div className='w-[94%] h-[85%]  flex flex-col justify-between items-center'>
           <div className='h-[45px] w-[100%] inline-flex justify-between items-center  '>
             <input className='w-[32%] h-[100%]  bg-stone-300 rounded-sm focus:outline-none pl-4' placeholder='Your Name' type="text" />
