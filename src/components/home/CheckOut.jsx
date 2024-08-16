@@ -18,10 +18,10 @@ export const CheckOut = () => {
         setOrders(JSON.parse(localStorage.getItem("cart")))
         const size = JSON.parse(localStorage.getItem("cart"))
         
-        if (size && size.length) {
+        if (size && size.length > 5) {
             if (containerRef.current) {
                 console.log("executed")
-                containerRef.current.classList.add("h-[300px]")
+                containerRef.current.classList.add("h-[320px]")
             }
         }
 
