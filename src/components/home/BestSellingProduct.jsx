@@ -75,7 +75,7 @@ const BestSellingProduct = () => {
       variants={displayAllProduct}
       animate={show ? "hideProduct" : "viewProduct"} 
       ref={scrollRef} className='w-[100%] flex flex-wrap place-content-between lg:place-content-start md:space-x-9 place-items-center mt-8'>
-        {isFetching && isPending ? "loading..." :
+        {isFetching && isPending ? <FlashSaleLoader/> :
             data?.map(product => <Product key={product.id} prod={product} />)
         }
       </motion.div>

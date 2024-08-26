@@ -19,6 +19,8 @@ import { Cart } from './components/home/Cart'
 import { CheckOut } from './components/home/CheckOut'
 import { createPortal } from 'react-dom'
 import { Menu } from './components/home/Menu'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 const queryClient = new QueryClient()
 export const userStatus = createContext()
 
@@ -26,7 +28,7 @@ function App() {
   const logIn = UseLogIn()
   const signUp = UseSignUp()
   const logOut = UseLogOut()
-  //const navigateToHome = useNavigation()
+  const navigateToHome = useNavigate()
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
   const [isEmailAlreadyExists, setIsEmailAlreadyExists] = useState(false)
   const [isWrongEmailOrPassword, setWrongEmailorPassword] = useState(false)
@@ -37,6 +39,7 @@ function App() {
   const [showOrderAlreadyExist, setOrderAlreadyExist] = useState(null)
 
   const createUser = async (url, data) => {
+    setIsDisable(true)
     const statusCode = await signUp(url, data)
     if (statusCode === 201) {
       setIsDisable(false)
@@ -47,34 +50,42 @@ function App() {
     if (statusCode === 400) {
       setIsDisable(false)
       setIsEmailAlreadyExists(true)
+      console.log("it is 400")
 
     } else {
       console.log(statusCode)
+      console.log("hey")
     }
   }
 
   const logInUser = async (url, data) => {
-    const {email, statusCode} = await logIn(url, data)
+    setIsDisable(true)
+    const {email, statusCode, isUserLoggedIn} = await logIn(url, data)
     if (statusCode === 200) {
       setIsDisable(false)
-      //navigateToHome("/")
+      console.log(email)
+      setIsUserLoggedIn(isUserLoggedIn)
+      navigateToHome("/")
     }
     if (statusCode === 401 || statusCode === 404) {
       setWrongEmailorPassword(true)
       setIsDisable(false)
+      console.log(statusCode)
     } else {
       console.log(statusCode)
     }
   }
 
   const logOutUser = async (url) => {
-    /*const statusCode = await logOut(url)
+    const statusCode = await logOut(url)
     if (statusCode === 200 || statusCode === 400) {
 
     } else {
       console.log(statusCode)
-    }*/
+    }
   }
+
+
 
   useEffect(() => {
     document.body.style.overflowX = "hidden"
@@ -101,6 +112,8 @@ function App() {
       showOrderAlreadyExist,
       showWishlistAlreadyExist,
       setOrderAlreadyExist,
+      setIsShowLoggingPage,
+      setIsUserLoggedIn,
     }}>
     <QueryClientProvider client={queryClient}>
     <MyHeader/>
@@ -123,7 +136,7 @@ function App() {
       <Route/>
     </Routes>
     {
-      createPortal(<Menu/>, document.getElementById("menu-root"))
+      //createPortal(<Menu/>, document.getElementById("menu-root"))
     }
     </div>
     </QueryClientProvider>

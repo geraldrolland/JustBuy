@@ -12,6 +12,7 @@ export const Cart = () => {
     const cartRef = useRef(null)
     const animateCartIcon = useStore(state => state.func3)
     const navigateToChechOut = useNavigate()
+
     const increaseQuantity = (id) => {
         data?.forEach(prod => {
             if (prod.id === id) {
@@ -21,10 +22,11 @@ export const Cart = () => {
                 cartlist.forEach(prod => {
                     if (prod.id === id) {
                         prod.quantity++
-                        total += prod.price * prod.quantity
+                        prod.subTotal = parseFloat(prod.quantity * prod.price)
+                        total += prod.subTotal
                         localStorage.setItem("cart", JSON.stringify(cartlist))
                     }
-                    total += prod.price * prod.quantity
+                    total += prod.subTotal
                 })
                 setSubTotal(total)
                 console.log(prod.quantity)
@@ -45,11 +47,12 @@ export const Cart = () => {
                 cartlist.forEach(prod => {
                     if (prod.id === id) {
                         prod.quantity--
-                        total += prod.price * prod.quantity
+                        prod.subTotal = parseFloat(prod.quantity * prod.price)
+                        total += prod.subTotal
                         localStorage.setItem("cart", JSON.stringify(cartlist))
                         
                     }
-                    total += prod.price * prod.quantity
+                    total += prod.subTotal
                 })
                 setSubTotal(total)
                 console.log(prod.quantity)
@@ -124,7 +127,7 @@ export const Cart = () => {
                     <SlArrowDown onClick={() => {decreaseQuantity(product.id)}} className='md:w-[12px] w-[14px] active:shadow-none md:shadow-md     cursor-pointer' />                               
                 </div>
               </div>
-              <h1 className='text-[18px] md:text-[16px]'>${parseInt(product.price) * product.quantity}</h1> 
+              <h1 className='text-[18px] md:text-[16px]'>${product.subTotal}</h1> 
               </div>
           </div>
       </div>) : <div className='w-[95%] text-[100px] md:h-[400px] mx-auto  justify-center items-center flex text-center md:text-[250px] text-gray-300'>{noOrders}</div>
@@ -153,7 +156,7 @@ export const Cart = () => {
                             <h1 className='text-[22px] capitalize text-gray-600 font-semibold tracking-wide'>cart total</h1>
                             <div className='w-[100%] h-[50px] border-b-2px border-gray-300 flex justify-between items-center'>
                                 <h1 className='text-gray-600 capitalize text-[18px]'>subtotal:</h1>
-                                <h1 className='text-gray-600 capitalize text-[18px]'>${parseInt(subTotal)}</h1>
+                                <h1 className='text-gray-600 capitalize text-[18px]'>${subTotal}</h1>
                             </div>
                             <div className='w-[100%] h-[50px] border-b-2px border-gray-300 flex justify-between items-center'>
                                 <h1 className='text-gray-600 capitalize text-[18px]'>shipping:</h1>
@@ -161,7 +164,7 @@ export const Cart = () => {
                             </div>
                             <div className='w-[100%] h-[50px]   flex justify-between items-center'>
                                 <h1 className='text-gray-600 capitalize text-[18px]'>total:</h1>
-                                <h1 className='text-gray-600 capitalize text-[18px]'>${parseInt(subTotal)}</h1>
+                                <h1 className='text-gray-600 capitalize text-[18px]'>${subTotal}</h1>
 
                             </div>
                             <button onClick={() => navigateToChechOut("/check-out/")} className='h-[50px] md:w-[200px] lg:w-[250px] mx-auto active:shadow-none block rounded-[4px] shadow-md w-[180px] md:tracking-normal tracking-tight bg-red-600 text-gray-100 '>Proceed to Checkout</button>

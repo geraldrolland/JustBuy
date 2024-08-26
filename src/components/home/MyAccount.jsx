@@ -4,6 +4,7 @@ import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 export const MyAccount = () => {
     const navigateToProfile = useNavigate()
+    
     const activeNav = ({isActive}) => {
         return {
             color: isActive ? "red" : ""

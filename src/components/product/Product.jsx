@@ -39,9 +39,10 @@ const Product = ({prod}) => {
     const wish = {
       id,
       title,
-      price,
+      price: parseFloat(price),
       image,
-      quantity: 1
+      quantity: 1,
+      subTotal: parseFloat(price),
     }
 
     try {
@@ -77,9 +78,10 @@ const Product = ({prod}) => {
     const cart = {
       id,
       title,
-      price,
+      price: parseFloat(price),
       image,
-      quantity : 1
+      quantity : 1,
+      subTotal: parseFloat(price),
     }
 
     try {

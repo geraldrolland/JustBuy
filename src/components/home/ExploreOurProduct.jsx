@@ -6,6 +6,7 @@ import axios from 'axios'
 import Product from '../product/Product'
 import { motion } from 'framer-motion'
 import { useQuery } from '@tanstack/react-query'
+import FlashSaleLoader from '../loaders/FlashSaleLoader'
 
 const fetchExploreOurProduct = async () => {
   try {
@@ -136,7 +137,7 @@ const ExploreOurProduct = () => {
         animate={show ? "hideProduct" : "viewProduct"}
        ref={scrollRef} onScroll={() => handleScroll(event)} className='w-[100%] mt-8 overflow-x-scroll scroll-smooth tab-container'>
         <div className='lg:w-[150%] w-[100%] flex flex-wrap lg:place-content-start place-content-start md:place-content-between md:space-x-5 place-items-center'>
-            {
+            { isPending && isFetching ? <FlashSaleLoader/> : 
                 data?.map(product => <Product key={product.id} prod={product} />)
             }
         </div>

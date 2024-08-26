@@ -21,6 +21,8 @@ const MyHeader = () => {
   const {
     showOrderAlreadyExist,
     showWishlistAlreadyExist,
+    isUserLoggedIn,
+    setIsUserLoggedIn,
   } = useContext(userStatus)
 
   const [wishlistCount, setWishlistCount] = useState(0)
@@ -54,8 +56,6 @@ const MyHeader = () => {
     
     const updateAnimateCartIcon = useStore(state => state.updateAnimateCartIcon)
     const updateAimateWishListIcon = useStore(state => state.updateAimateWishListIcon)
-
-    const isUserLoggedIn = useStore(state => state.isUserLoggedIn)
     const userEmail = useStore(state => state.userEmail)
     const [showStatus, setShowStatus] = useState(false)
     const [showSearchInput, setShowSearchInput] = useState(false)
@@ -89,24 +89,41 @@ const MyHeader = () => {
 
       }
     }
+    
 
     useEffect(() => {
+
       document.body.onclick = () => {
         shrinkMenu()
       }
       updateAnimateCartIcon(animateCartIcon)
       updateAimateWishListIcon(animateWishListIcon)
-      if (localStorage.getItem("wishlist") && localStorage.getItem("cart"))
-      {
-      setWishlistCount(JSON.parse(localStorage.getItem("wishlist")).length)
-      setCartCount(JSON.parse(localStorage.getItem("cart")).length)
+
+
+      if (localStorage.getItem("wishlist")) {
+      const WCount = JSON.parse(localStorage.getItem("wishlist"))
+      setWishlistCount(WCount.length)
+      }
+
+      if (localStorage.getItem("cart")) {
+      const cCount = JSON.parse(localStorage.getItem("cart"))
+      setCartCount(cCount.length)
+      } 
+      
+      try {
+        const userStatus = JSON.parse(sessionStorage.getItem("userStatus"))
+        setIsUserLoggedIn(userStatus.isUserLoggedIn)
+      }
+      
+      catch(error) {
+        setIsUserLoggedIn(false)
       }
 
     }, [])
 
   return (
     <>
-    <div className='w-full h-[45px]  md:h-[60px] top-0 right-0  border-1px flex place-content-evenly place-items-center fixed  backdrop-filter backdrop-blur-xl z-30'>
+    <div className='w-full h-[45px]  md:h-[60px] top-0 right-0   flex place-content-evenly place-items-center fixed  backdrop-filter backdrop-blur-xl z-30'>
         <NavLink to={"/"}  className="md:w-[20%] w-[30%]  h-full lg:tracking-wider lg:text-4xl capitalize flex justify-start text-xl  items-center font-semibold tracking-wide md:ml-[35px] md:text-2xl text-gray-400">
             justBuy
         </NavLink>
@@ -120,9 +137,11 @@ const MyHeader = () => {
             <NavLink style={setActiveLink} to={"about"} className={' md:w-[11%] lg:w-[9%] h-[50%] text-gray-400  flex justify-center items-center  tracking-wide'}>
                 About
             </NavLink>
+            { !isUserLoggedIn ?
             <NavLink style={setActiveLink} to={"sign-up"} className={' lg:w-[12%] md:w-[17%]  h-[50%] text-gray-400  flex justify-center items-center tracking-wide'}>
                 Sign up
-            </NavLink>
+            </NavLink> : null
+            }
         </div>
         <div className='md:w-[30%]  w-[60%] h-full  inline-flex place-content-evenly place-items-center'>
         <svg onClick={() =>{
@@ -131,7 +150,7 @@ const MyHeader = () => {
          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
            </svg>
             <div className='w-[65%] h-[60%] hidden  relative lg:block '>
-                <input className='w-[100%] text-md h-[100%] focus:outline-none focus:shadow-md placeholder:text-md pl-2 text-gray-500 bg-gray-100 rounded-sm' type="text" placeholder='What are you looking for?' />
+                <input className='w-[100%] text-md h-[100%] focus:outline-none  placeholder:text-md pl-2 text-gray-500 bg-gray-100 rounded-sm' type="text" placeholder='What are you looking for?' />
                 <svg onClick={() => {}} className='absolute fill-stroke text-gray-600 right-0 top-0 w-[25px] mt-1 mr-1' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
              </svg>
@@ -155,8 +174,8 @@ const MyHeader = () => {
         <NavLink to={"my-account/my-profile"}
         onMouseOver={() => dropDownMenu()}
 
-         className='w-[30px] h-[30px] rounded-full md:flex justify-center items-center border-1px hidden'>
-        <svg className='w-[100%] fill-stroke text-gray-500' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+         className='w-[30px] h-[30px] rounded-full md:flex border-gray-500 justify-center items-center border-2px hidden'>
+        <svg className='w-[9a0%] fill-stroke  text-gray-500' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
       </svg>
       </NavLink> : null
@@ -165,26 +184,26 @@ const MyHeader = () => {
 
         {
             createPortal(
-            <div ref={accountRef} className='w-[270px] transition-all rounded-sm duration-400 backdrop-filter backdrop-blur-3xl bg-gray-900 bg-opacity-30 ease-in-out h-[220px] transform translate-y-[-130%] flex  right-0 top-[60px] z-10 fixed  flex-col justify-between items-center'>
+            <div ref={accountRef} className='w-[180px] transition-all rounded-md duration-400   backdrop-filter border-t-slate-400 border-t-2px backdrop-blur-3xl bg-gray-900 bg-opacity-30 shadow-md ease-in-out h-[200px] transform translate-y-[-130%] flex  right-0 top-[60px] z-10 fixed  flex-col justify-between items-center'>
               <div className='w-[100%]   h-[20%] flex justify-start items-center'>
-              <FiUser className='text-[32px] text-white ml-4' />
-              <div className='text-xl capitalize ml-4 text-white'>manage my account</div>
+              <FiUser className='text-[22px] text-white ml-2' />
+              <div className='text-[14px] capitalize ml-2 text-white'>manage my account</div>
               </div>
               <div className='w-[100%]   h-[20%] flex justify-start items-center'>
-              <FiShoppingBag className='text-[32px] text-white ml-4' />
-              <div className='text-xl capitalize ml-4 text-white'>my order</div>
+              <FiShoppingBag className='text-[22px] text-white ml-2' />
+              <div className='text-[14px] capitalize ml-2 text-white'>my order</div>
               </div>
               <div className='w-[100%]   h-[20%] flex justify-start items-center '>
-              <RxCrossCircled className='text-[32px] text-white ml-4' />
-              <div className='text-xl capitalize ml-4 text-white'>my cancellation</div>
+              <RxCrossCircled className='text-[22px] text-white ml-2' />
+              <div className='text-[14px] capitalize ml-2 text-white'>my cancellation</div>
               </div>
               <div className='w-[100%]   h-[20%] flex justify-start items-center'>
-              <GoStar className='text-[32px] text-white ml-4' />
-              <div className='text-xl capitalize ml-4 text-white'>my reviews</div>
+              <GoStar className='text-[22px] text-white ml-2' />
+              <div className='text-[14px] capitalize ml-2 text-white'>my reviews</div>
               </div>
               <div className='w-[100%]   h-[20%] flex justify-start items-center'>
-              <CiLogout className='text-[32px] text-white ml-4' />
-              <div className='text-xl capitalize ml-4 text-white'>logout</div>
+              <CiLogout className='text-[22px] text-white ml-2' />
+              <div className='text-[14px] capitalize ml-2 text-white'>logout</div>
               </div>
             </div>, document.getElementById("account-root"))
         }
